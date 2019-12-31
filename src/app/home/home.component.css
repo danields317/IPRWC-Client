@@ -1,0 +1,27 @@
+.img-wrapper {
+  max-height: 100vh;
+  background-color: #231F20;
+}
+
+.carousel-caption {
+  color: #EAEAEA;
+}
+
+img {
+  opacity: 0.7;
+}
+
+.arrow {
+  opacity: 1;
+  transform: scale(5);
+  cursor: pointer;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.arrow-cont:hover {
+  filter: invert(1);
+}

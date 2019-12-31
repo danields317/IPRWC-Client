@@ -1,0 +1,45 @@
+.info {
+  text-align: left;
+  padding: 4vh 20vw;
+  background-color: #EAEAEA;
+  color: #231F20;
+  height: 45vh;
+}
+
+.item-col {
+  text-align: center;
+  color: #EAEAEA;
+}
+
+.item-col img {
+  max-height: 40vh;
+  opacity: 0.7;
+}
+
+.img-wrapper {
+  background-color: #231F20;
+}
+
+.card {
+  border: none;
+}
+
+.btn-primary {
+  background-color: #AD974F;
+  border-color: #AD974F;
+}
+
+.btn-primary:hover {
+  background-color: #8E793E;
+}
+
+.col-lg-4 {
+  padding: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .info {
+    height: auto;
+    text-align: center;
+  }
+}
