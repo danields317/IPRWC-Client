@@ -19,7 +19,7 @@ export class AccountService {
 
   logUserIn(emailAddress: string, password: string) {
     return  this.httpService.makePostRequest('auth', {emailAddress, password}).pipe(
-      catchError((errorResponse: HttpErrorResponse) => this.handleError(error))
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
     );
   }
 
@@ -29,6 +29,31 @@ export class AccountService {
 
   setJwtInformation(token) {
     token = token.jsonToken;
+    console.log(this.calculateExpirationTime(this.jwtHelperService.getTokenExpirationDate(token)));
+    const timeTillRefresh = this.calculateExpirationTime(this.jwtHelperService.getTokenExpirationDate(token));
     localStorage.setItem('id_token', token);
+    setTimeout(() => this.getRefreshToken(), timeTillRefresh - 60000);
   }
+
+  getRefreshToken() {
+    console.log('start Refresh');
+    this.httpService.makeGetRequest('auth/refresh').pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
+    ).subscribe(data => this.setJwtInformation(data), errorResponse => this.forceLogOut()
+    );
+  }
+
+  forceLogOut() {
+    console.log('fail');
+  }
+
+  calculateExpirationTime(experirationDate: Date) {
+    return +experirationDate - +new Date();
+  }
+
+  isLoggedIn() {
+
+  }
+
+
 }

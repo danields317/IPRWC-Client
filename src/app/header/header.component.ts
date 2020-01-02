@@ -9,9 +9,11 @@ import {AccountService} from '../services/account.service';
 })
 export class HeaderComponent implements OnInit {
   companyName;
+  loggedIn;
 
   constructor(private constants: ConstantsService, private accountService: AccountService) {
     this.companyName = constants.appname;
+    this.accountService.isLoggedIn();
   }
 
   ngOnInit() {
