@@ -1,0 +1,25 @@
+.card {
+  border-radius: 25px;
+  border-color: #AD974F;
+}
+
+img {
+  border-radius: 25px 25px 0 0;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px 10px #8E793E;
+}
+
+.card-body {
+  padding-top: 10px;
+  color: #231F20;
+  background-color: #EAEAEA;
+  border-radius: 0 0 25px 25px;
+}
+
+.badge-info {
+  background-color: #AD974F;
+}

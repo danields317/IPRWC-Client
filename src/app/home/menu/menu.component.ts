@@ -10,6 +10,8 @@ import {Product} from '../../models/product';
 })
 export class MenuComponent implements OnInit {
   companyName;
+  prod: Product;
+  image;
 
   constructor(private constants: ConstantsService, private productService: ProductService) {
     this.companyName = constants.appname;
@@ -17,9 +19,4 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  test() {
-     let product = this.productService.getProducts();
-  }
-
 }

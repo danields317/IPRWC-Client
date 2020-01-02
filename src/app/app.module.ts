@@ -12,6 +12,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ScrollSpyDirective } from './directives/scroll-spy.directive';
 import { MenuComponent } from './home/menu/menu.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductsPageComponent } from './products-page/products-page.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     ScrollSpyDirective,
-    MenuComponent
+    MenuComponent,
+    ProductsPageComponent,
+    ProductListComponent,
+    ProductListItemComponent
   ],
   imports: [
     BrowserModule,

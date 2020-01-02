@@ -1,0 +1,18 @@
+<!--<div class="card h-75">-->
+<!--    <div class="img-cont h-75 overflow-hidden d-flex justify-content-center align-items-center">-->
+<!--      <img [src]="productImage != null ? productImage : '../../../assets/img/365.gif'">-->
+<!--    </div>-->
+<!--  <div class="product-info h-50 overflow-auto">-->
+<!--    <h2>{{product.productName}}</h2>-->
+<!--    <sub>{{product.brand}}</sub>-->
+<!--    <p>{{product.price}}</p>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="card h-100">
+  <img [src]="productImage != null ? productImage : '../../../assets/img/365.gif'" class="card-img-top h-75">
+  <div class="card-body h-25">
+    <h5 class="card-title">{{product.productName}}</h5>
+    <h6 class="card-subtitle">{{product.brand}}</h6>
+    <span class="badge badge-info">&euro; {{product.price}}</span>
+  </div>
+</div>
