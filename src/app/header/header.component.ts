@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ConstantsService} from '../services/constants.service';
+import {AccountService} from '../services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {ConstantsService} from '../services/constants.service';
 export class HeaderComponent implements OnInit {
   companyName;
 
-  constructor(private constants: ConstantsService) {
+  constructor(private constants: ConstantsService, private accountService: AccountService) {
     this.companyName = constants.appname;
   }
 

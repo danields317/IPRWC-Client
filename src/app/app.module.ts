@@ -15,6 +15,11 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
+import { HomeHeaderComponent } from './home/home-header/home-header.component';
+import { ProductComponent } from './product/product.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {JwtModule} from '@auth0/angular-jwt';
+import {config} from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -28,13 +33,25 @@ import { ProductListItemComponent } from './product-list/product-list-item/produ
     MenuComponent,
     ProductsPageComponent,
     ProductListComponent,
-    ProductListItemComponent
+    ProductListItemComponent,
+    HomeHeaderComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({config: {
+        tokenGetter: () => {
+          return localStorage.getItem('id_token');
+        },
+        whitelistedDomains: ['localhost:8080'],
+        throwNoTokenError: false
+    }
+    }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

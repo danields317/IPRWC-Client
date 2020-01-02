@@ -17,20 +17,6 @@ export class ProductListComponent implements OnInit {
 
   setProducts(products: Product[]) {
     this.products = products;
-    var product: Product = new class implements Product {
-      brand: string;
-      description: string;
-      id: string;
-      price: number;
-      productName: string;
-      stock: number;
-      thumbnail: string;
-    };
-    product.id = String(1);
-    product.price = 10;
-    product.brand = 'brandje';
-    product.productName = 'koenkie';
-    this.products.push(product);
   }
 
 

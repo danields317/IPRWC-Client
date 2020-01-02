@@ -24,4 +24,7 @@ export class ProductService {
     return throwError(data);
   }
 
+  getProduct(id: string) {
+    return this.httpService.makeGetRequest('product/' + id);
+  }
 }
