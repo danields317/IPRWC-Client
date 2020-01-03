@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ConstantsService} from '../../services/constants.service';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/product';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -13,10 +14,22 @@ export class MenuComponent implements OnInit {
   prod: Product;
   image;
 
-  constructor(private constants: ConstantsService, private productService: ProductService) {
+  constructor(private constants: ConstantsService, private productService: ProductService, private router: Router) {
     this.companyName = constants.appname;
   }
 
   ngOnInit() {
+  }
+
+  toMensWatches() {
+    this.router.navigate(['/products', 'men']);
+  }
+
+  toLadiesWatches() {
+    this.router.navigate(['/products', 'ladies']);
+  }
+
+  toSmartWatches() {
+    this.router.navigate(['/products', 'smartwatch']);
   }
 }

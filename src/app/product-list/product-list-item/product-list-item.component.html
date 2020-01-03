@@ -8,7 +8,7 @@
 <!--    <p>{{product.price}}</p>-->
 <!--  </div>-->
 <!--</div>-->
-<div class="card h-100">
+<div class="card h-100" (click)="toProduct()">
   <img [src]="productImage != null ? productImage : '../../../assets/img/365.gif'" class="card-img-top h-75">
   <div class="card-body h-25">
     <h5 class="card-title">{{product.productName}}</h5>

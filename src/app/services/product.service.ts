@@ -11,8 +11,8 @@ export class ProductService {
 
   constructor(private httpService: HttpService) { }
 
-  getProducts(pageSize, page) {
-    return this.httpService.makeGetRequest('product/all/' + pageSize + '/' + page);
+  getProducts(type, pageSize, page) {
+    return this.httpService.makeGetRequest('product/' + type + '/' + pageSize + '/' + page);
   }
 
   getProductThumbnail(id) {

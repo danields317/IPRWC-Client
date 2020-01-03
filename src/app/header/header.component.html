@@ -1,12 +1,25 @@
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand">{{companyName}}</a>
+  <a class="navbar-brand" (click)="toHome()">{{companyName}}</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link">Products</a>
+      <li class="nav-item" (click)="toProducts()">
+        <a class="nav-link">Alle horloges</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link login">Login</a>
+        <a class="nav-link" *ngIf="loggedIn">Profiel</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn">
+        <a class="nav-link">
+          <img src="../../assets/img/round_shopping_cart_black_48dp.png" class="img-fluid" style="height: 24px">
+        </a>
+      </li>
+      <li class="nav-item" (click)="toLogin()">
+        <a class="nav-link login" *ngIf="!loggedIn">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn" (click)="logOut()">
+        <a class="nav-link logOut">
+          <img src="../../assets/img/exit_to_app-24px.svg">
+        </a>
       </li>
     </ul>
   </div>

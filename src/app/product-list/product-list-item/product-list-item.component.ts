@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../../models/product';
 import {HttpService} from '../../services/http.service';
 import {ProductService} from '../../services/product.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list-item',
@@ -14,7 +15,7 @@ export class ProductListItemComponent implements OnInit {
   productImage;
   isLoading = true;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.getProductThumbnail();
@@ -40,6 +41,10 @@ export class ProductListItemComponent implements OnInit {
   handleNoImage() {
     this.productImage = '../../../assets/img/600px-No_image_available.svg.png';
     this.isLoading = false;
+  }
+
+  toProduct() {
+    this.router.navigate(['/product/', this.product.id]);
   }
 
 }

@@ -3,6 +3,7 @@ import {Product} from '../models/product';
 import {ProductService} from '../services/product.service';
 import {ProductList} from '../models/productList';
 import {ProductListComponent} from '../product-list/product-list.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-products-page',
@@ -16,15 +17,18 @@ export class ProductsPageComponent implements OnInit {
   pageSize = 10;
   currentPage = 1;
   maxPages;
+  type;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute) {
+    this.type = this.route.snapshot.params.type;
+  }
 
   ngOnInit() {
     this.getProducts();
   }
 
   getProducts() {
-    this.productService.getProducts(this.pageSize, this.currentPage).subscribe((data: ProductList) => this.manageResponse(data));
+    this.productService.getProducts(this.type, this.pageSize, this.currentPage).subscribe((data: ProductList) => this.manageResponse(data));
   }
 
   manageResponse(data: ProductList) {

@@ -9,3 +9,7 @@ a {
 li a:hover {
   background-color: #AD974F;
 }
+
+.logOut {
+  border-left: 1px inset #231F20;
+}
