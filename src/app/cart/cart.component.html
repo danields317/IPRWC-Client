@@ -1,0 +1,5 @@
+<app-header></app-header>
+<div class="container">
+  <app-cart-item *ngFor="let item of cartItems" [orderItem]="item"></app-cart-item>
+</div>
+<button (click)="onOrder()">Bestel</button>

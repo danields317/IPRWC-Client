@@ -1,0 +1,28 @@
+<app-header></app-header>
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <div class="form-check">
+    <input type="checkbox" id="useHome">
+    <label for="useHome" class="form-check-label">Gebruik opgegeven adres gegevens</label>
+  </div>
+  <div class="form-group">
+    <label for="deliveryCity">Stad</label>
+    <input id="deliveryCity" type="text" formControlName="deliveryCity">
+  </div>
+  <div class="form-group">
+    <label for="deliveryAddress">Straat</label>
+    <input id="deliveryAddress" formControlName="deliveryAddress">
+  </div>
+  <div class="form-group">
+    <label for="deliveryNumber">Huisnummer</label>
+    <input id="deliveryNumber" formControlName="deliveryNumber">
+  </div>
+  <div class="form-group">
+    <input class="form-control" placeholder="yyyy-mm-dd"
+           name="dp" formControlName="deliveryDate" ngbDatepicker #d="ngbDatepicker" [minDate]="date">
+    <div class="input-group-append">
+      <button (click)="d.toggle()" type="button"><img src="../../assets/img/round_calendar_today_black_48dp.png"></button>
+    </div>
+  </div>
+  <button type="submit" [disabled]="!orderForm.valid">Bestel</button>
+</form>
+

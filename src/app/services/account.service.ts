@@ -5,6 +5,8 @@ import {BehaviorSubject, Subject, throwError} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {Router} from '@angular/router';
+import {CartService} from './cart.service';
+import {Account} from '../models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +15,9 @@ export class AccountService {
 
   public loggedIn = new BehaviorSubject(false);
 
-  constructor(private httpService: HttpService, private jwtHelperService: JwtHelperService, private router: Router) {
+  constructor(private httpService: HttpService, private jwtHelperService: JwtHelperService, private router: Router,
+              private cartService: CartService) {
     this.autoLogin();
-  }
-
-  createNewAccount() {
-
   }
 
   logUserIn(emailAddress: string, password: string) {
@@ -55,6 +54,7 @@ export class AccountService {
   logOut() {
     localStorage.removeItem('id_token');
     this.router.navigate(['']);
+    this.cartService.clearCart();
     this.loggedIn.next(false);
   }
 
@@ -66,11 +66,17 @@ export class AccountService {
     if (localStorage.getItem('id_token') != null) {
       if (!this.jwtHelperService.isTokenExpired(localStorage.getItem('id_token'))) {
         this.getRefreshToken();
+        this.cartService.getItemsFromStorage();
       } else {
         this.logOut();
       }
     } else {
-      this.logOut();
+      // this.logOut();
     }
+  }
+
+  registerNewAccount(account: Account) {
+    return this.httpService.makePostRequest('account', account).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
   }
 }

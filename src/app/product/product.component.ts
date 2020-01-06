@@ -1,27 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../models/product';
 import {ProductService} from '../services/product.service';
 import {ActivatedRoute} from '@angular/router';
+import {AccountService} from '../services/account.service';
+import {Subscription} from 'rxjs';
+import {CartService} from '../services/cart.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
 
   product: Product = {} as Product;
   productImage;
   isLoading = true;
   amount: number;
   fullStock: boolean;
+  loggedIn;
+  subscription: Subscription;
+  inCart: boolean;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute,
+              private accountService: AccountService, private cartService: CartService) {
+    this.subscription = this.accountService.loggedIn.subscribe(data => this.loggedIn = data);
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
     this.getProduct(id);
     this.getProductThumbnail(id);
+    this.inCart = this.cartService.isItemInCart(id);
   }
 
   getProduct(id) {
@@ -53,18 +63,12 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    console.log(this.amount);
+    this.cartService.addItem(this.product.id, this.amount);
+    this.inCart = true;
   }
 
-  checkAmount($event: any) {
-    if (this.amount > this.product.stock) {
-      this.amount = this.product.stock;
-      this.fullStock = true;
-    } else if (this.amount < 1) {
-      this.amount = 1;
-      this.fullStock = false;
-    } else {
-      this.fullStock = false;
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../services/account.service';
 import {Router} from '@angular/router';
 
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = new FormGroup({
-      emailAddress: new FormControl(),
-      password: new FormControl()
+      emailAddress: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required])
     });
   }
 
@@ -46,5 +46,9 @@ export class LoginComponent implements OnInit {
   handleFail() {
     this.logInFailed = true;
     this.loggingIn = false;
+  }
+
+  toRegister() {
+    this.router.navigate(['/register']);
   }
 }

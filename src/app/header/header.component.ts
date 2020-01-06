@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('faka');
     this.accountService.loggedIn.subscribe(data => this.loggedIn = data);
   }
 
@@ -31,6 +30,10 @@ export class HeaderComponent implements OnInit {
 
   toLogin() {
     this.router.navigate(['/login']);
+  }
+
+  toCart() {
+    this.router.navigate(['/cart']);
   }
 
   logOut() {

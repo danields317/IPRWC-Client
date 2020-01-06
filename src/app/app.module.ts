@@ -20,6 +20,10 @@ import { ProductComponent } from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
 import {config} from 'rxjs';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { OrderComponent } from './order/order.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import {config} from 'rxjs';
     ProductListComponent,
     ProductListItemComponent,
     HomeHeaderComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent,
+    CartItemComponent,
+    OrderComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

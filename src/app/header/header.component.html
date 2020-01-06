@@ -8,7 +8,7 @@
       <li class="nav-item">
         <a class="nav-link" *ngIf="loggedIn">Profiel</a>
       </li>
-      <li class="nav-item" *ngIf="loggedIn">
+      <li class="nav-item" *ngIf="loggedIn" (click)="toCart()">
         <a class="nav-link">
           <img src="../../assets/img/round_shopping_cart_black_48dp.png" class="img-fluid" style="height: 24px">
         </a>

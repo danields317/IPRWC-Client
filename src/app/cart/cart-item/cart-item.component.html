@@ -1,0 +1,17 @@
+<div class="row" *ngIf="!isLoading">
+  <div class="col-lg-2">
+    <img [src]="productImage" *ngIf="!isLoadingImg">
+  </div>
+  <div class="col-lg-4">
+    {{product.productName}}
+  </div>
+  <div class="col-lg-2">
+    {{orderItem.amount}}
+  </div>
+  <div class="col-lg-2">
+    {{totalPrice}}
+  </div>
+  <div class="col-lg-2">
+    <button>X</button>
+  </div>
+</div>

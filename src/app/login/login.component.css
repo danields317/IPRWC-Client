@@ -1,0 +1,47 @@
+.background {
+  min-height: 80vh;
+}
+
+main {
+  color: #231F20;
+  text-align: center;
+  padding: 2em 35vw;
+}
+
+.noAccount {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.noAccount:hover {
+  color: #AD974F;
+}
+
+form {
+  text-align: left;
+  margin-top: 1.5em;
+}
+
+button {
+  background-color: #AD974F;
+  border-radius: 20px;
+  width: 100%;
+  text-align: center;
+  border-color: #8E793E;
+}
+
+button:disabled {
+  background-color: #AD974F !important;
+  cursor: default;
+  opacity: 0.5;
+}
+
+button:hover {
+  background-color: #8E793E;
+}
+
+@media screen and (max-width: 992px) {
+  main {
+    padding: 2em 5vw;
+  }
+}

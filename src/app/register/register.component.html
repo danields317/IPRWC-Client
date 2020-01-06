@@ -1,1 +1,57 @@
-<p>register works!</p>
+<app-header></app-header>
+<div class="background">
+  <main>
+    <h1>Registreer</h1>
+    <hr>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="emailAddress">Email-adres</label>
+        <input type="email" id="emailAddress" formControlName="emailAddress" class="form-control">
+        <small *ngIf="registerForm.get('emailAddress').touched && !registerForm.get('emailAddress').valid">Onjuist Email-adres.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Wachtwoord</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+        <small *ngIf="registerForm.get('password').touched && !registerForm.get('password').valid">Wachtwoord moet minstens 8 tekens bevatten.</small>
+      </div>
+      <div class="form-group">
+        <label for="passwordRepeat">Herhaal wachtwoord</label>
+        <input type="password" id="passwordRepeat" formControlName="passwordCheck" class="form-control">
+        <small *ngIf="registerForm.get('passwordCheck').touched && !registerForm.get('passwordCheck').valid">Wachtwoorden komen niet overeen.</small>
+      </div>
+      <div class="form-group">
+        <label for="firstName">Voornaam</label>
+        <input id="firstName" formControlName="firstName" class="form-control">
+        <small *ngIf="registerForm.get('firstName').touched && !registerForm.get('firstName').valid">Vul een achternaam in.</small>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Achternaam</label>
+        <input id="lastName" formControlName="lastName" class="form-control">
+        <small *ngIf="registerForm.get('lastName').touched && !registerForm.get('lastName').valid">Vul een achternaam in.</small>
+      </div>
+      <div class="form-group">
+        <label for="city">Woonplaats</label>
+        <input id="city" formControlName="city" class="form-control">
+        <small *ngIf="registerForm.get('city').touched && !registerForm.get('city').valid">Vul een woonplaats in.</small>
+      </div>
+      <div class="form-group">
+        <label for="street">Straatnaam</label>
+        <input id="street" formControlName="street" class="form-control">
+        <small *ngIf="registerForm.get('street').touched && !registerForm.get('street').valid">Vul een straatnaam in.</small>
+      </div>
+      <div class="form-group">
+        <label for="number">Huisnummer</label>
+        <input id="number" formControlName="number" class="form-control">
+        <small *ngIf="registerForm.get('number').touched && !registerForm.get('number').valid">Vul een huisnummer in.</small>
+      </div>
+      <br>
+      <button type="submit" [disabled]="registering ||!registerForm.valid">
+        <div *ngIf="!registering">Registreer</div>
+        <div class="spinner-border" role="status" *ngIf="registering">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+    </form>
+  </main>
+</div>
+

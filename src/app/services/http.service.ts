@@ -16,7 +16,7 @@ export class HttpService {
   makePostRequest(query: string, body: any) {
     return this.http.post(this.constants.apiUrl + query, body);
   }
-      makeDeleteRequest(query: string) {
+  makeDeleteRequest(query: string) {
     return this.http.delete(this.constants.apiUrl + query);
   }
   makePutRequest(query: string, body: any) {

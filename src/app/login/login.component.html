@@ -1,11 +1,26 @@
 <app-header></app-header>
-  <form [formGroup]="loginForm" class="d-flex justify-content-center" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email-adres</label>
-      <input type="email" formControlName="emailAddress" id="email" class="form-control">
-      <label for="password">Wachtwoord</label>
-      <input type="password" formControlName="password" id="password" class="form-control">
-      <button type="submit" [disabled]="loggingIn">Log in</button>
-      <p class="bg-warning" *ngIf="logInFailed">Email adres of wachtwoord is verkeerd</p>
-    </div>
-  </form>
+<div class="background">
+  <main>
+    <h1>Login</h1>
+    <hr>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email-adres</label>
+        <input type="email" formControlName="emailAddress" id="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Wachtwoord</label>
+        <input type="password" formControlName="password" id="password" class="form-control">
+      </div>
+      <button type="submit" [disabled]="loggingIn || !loginForm.valid">
+        <div *ngIf="!loggingIn">Log in</div>
+        <div class="spinner-border" role="status" *ngIf="loggingIn">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+      <small class="wrongCred" *ngIf="logInFailed">Email adres of wachtwoord is verkeerd</small>
+    </form>
+    <hr>
+    <small class="noAccount" (click)="toRegister()">Nog geen account? Klik hier.</small>
+  </main>
+</div>

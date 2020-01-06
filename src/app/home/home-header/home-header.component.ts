@@ -32,4 +32,8 @@ export class HomeHeaderComponent implements OnInit {
   logOut() {
     this.accountService.logOut();
   }
+
+  toCart() {
+    this.router.navigate(['/cart']);
+  }
 }

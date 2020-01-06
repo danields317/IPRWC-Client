@@ -1,16 +1,17 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../models/product';
 import {ProductService} from '../services/product.service';
 import {ProductList} from '../models/productList';
 import {ProductListComponent} from '../product-list/product-list.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css']
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent implements OnInit, OnDestroy {
 
   @ViewChild(ProductListComponent, {static: true}) productList: ProductListComponent;
 
@@ -18,9 +19,14 @@ export class ProductsPageComponent implements OnInit {
   currentPage = 1;
   maxPages;
   type;
+  subscription: Subscription;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {
-    this.type = this.route.snapshot.params.type;
+    this.subscription = this.route.params.subscribe(
+      (params: Params) => {
+        this.handlePageChange(params.type);
+      }
+    );
   }
 
   ngOnInit() {
@@ -36,4 +42,12 @@ export class ProductsPageComponent implements OnInit {
     this.productList.setProducts(data.products);
   }
 
+  handlePageChange(type) {
+    this.type = type;
+    this.getProducts();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
