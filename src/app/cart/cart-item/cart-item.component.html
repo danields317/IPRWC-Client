@@ -1,17 +1,19 @@
-<div class="row" *ngIf="!isLoading">
+<div class="row d-flex flex-row align-items-center" *ngIf="!isLoading">
   <div class="col-lg-2">
-    <img [src]="productImage" *ngIf="!isLoadingImg">
+    <img [src]="productImage" *ngIf="!isLoadingImg" class="product-img">
   </div>
   <div class="col-lg-4">
     {{product.productName}}
   </div>
   <div class="col-lg-2">
-    {{orderItem.amount}}
+    Aantal: {{orderItem.amount}}
   </div>
   <div class="col-lg-2">
-    {{totalPrice}}
+    &euro; {{totalPrice}}
   </div>
   <div class="col-lg-2">
-    <button>X</button>
+    <button class="delete-button" (click)="removeProduct()">
+      <img src="../../../assets/img/baseline_delete_black_24dp.png">
+    </button>
   </div>
 </div>

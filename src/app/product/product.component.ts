@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../models/product';
 import {ProductService} from '../services/product.service';
 import {ActivatedRoute} from '@angular/router';
@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   product: Product = {} as Product;
   productImage;
   isLoading = true;
-  amount: number;
+  amount = 1;
   fullStock: boolean;
   loggedIn;
   subscription: Subscription;
@@ -71,4 +71,18 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  minus() {
+    if (this.amount > 1) {
+      this.amount = this.amount - 1;
+      this.fullStock = false;
+    }
+  }
+
+  plus() {
+    if (this.amount < this.product.stock) {
+      this.amount = this.amount + 1;
+    } else {
+      this.fullStock = true;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {OrderItem} from '../models/orderItem';
 import {BehaviorSubject} from 'rxjs';
 
@@ -26,6 +26,7 @@ export class CartService {
     removeItem(productId) {
       this.cartItemsList.splice(this.findIndex(productId), 1);
       this.cartItems.next(this.cartItemsList);
+      this.writeToStorage();
     }
 
     isItemInCart(productId) {
@@ -56,7 +57,13 @@ export class CartService {
     }
 
     getItemsFromStorage() {
-      this.cartItemsList =  JSON.parse(localStorage.getItem('cart'));
+      const result =  JSON.parse(localStorage.getItem('cart'));
+      if (result === null) {
+        this.cartItemsList = [];
+      } else {
+        this.cartItemsList = result;
+      }
+      console.log(this.cartItemsList);
       this.cartItems.next(this.cartItemsList);
     }
 

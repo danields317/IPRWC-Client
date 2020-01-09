@@ -1,28 +1,47 @@
 <app-header></app-header>
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-  <div class="form-check">
-    <input type="checkbox" id="useHome">
-    <label for="useHome" class="form-check-label">Gebruik opgegeven adres gegevens</label>
-  </div>
-  <div class="form-group">
-    <label for="deliveryCity">Stad</label>
-    <input id="deliveryCity" type="text" formControlName="deliveryCity">
-  </div>
-  <div class="form-group">
-    <label for="deliveryAddress">Straat</label>
-    <input id="deliveryAddress" formControlName="deliveryAddress">
-  </div>
-  <div class="form-group">
-    <label for="deliveryNumber">Huisnummer</label>
-    <input id="deliveryNumber" formControlName="deliveryNumber">
-  </div>
-  <div class="form-group">
-    <input class="form-control" placeholder="yyyy-mm-dd"
-           name="dp" formControlName="deliveryDate" ngbDatepicker #d="ngbDatepicker" [minDate]="date">
-    <div class="input-group-append">
-      <button (click)="d.toggle()" type="button"><img src="../../assets/img/round_calendar_today_black_48dp.png"></button>
-    </div>
-  </div>
-  <button type="submit" [disabled]="!orderForm.valid">Bestel</button>
-</form>
+<div class="background">
+  <main>
+    <h1>Bestel</h1>
+    <hr>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="form-check">
+        <input type="checkbox" id="useHome">
+        <label for="useHome" class="form-check-label">Gebruik opgegeven adres gegevens</label>
+      </div>
+      <div class="form-group">
+        <label for="deliveryCity">Stad</label>
+        <input id="deliveryCity" type="text" formControlName="deliveryCity" class="form-control">
+        <small *ngIf="orderForm.get('deliveryCity').touched && !orderForm.get('deliveryCity').valid">Vul een stad in.</small>
+      </div>
+      <div class="form-group">
+        <label for="deliveryAddress">Straat</label>
+        <input id="deliveryAddress" formControlName="deliveryAddress" class="form-control">
+        <small *ngIf="orderForm.get('deliveryAddress').touched && !orderForm.get('deliveryAddress').valid">Vul een straatnaam in.</small>
+      </div>
+      <div class="form-group">
+        <label for="deliveryNumber">Huisnummer</label>
+        <input id="deliveryNumber" formControlName="deliveryNumber" class="form-control">
+        <small *ngIf="orderForm.get('deliveryNumber').touched && !orderForm.get('deliveryNumber').valid">Vul een huisnummer in.</small>
+      </div>
+      <div class="form-group">
+        <label for="deliveryDate">Bezorgdatum</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" formControlName="deliveryDate" ngbDatepicker #d="ngbDatepicker" [minDate]="date" id="deliveryDate">
+          <div class="input-group-append">
+            <button (click)="d.toggle()" type="button" class="form-control"><img src="../../assets/img/round_calendar_today_black_48dp.png"></button>
+          </div>
+        </div>
+        <small *ngIf="orderForm.get('deliveryNumber').touched && !orderForm.get('deliveryNumber').valid">Vul een bezorgdatum in.</small>
+      </div>
+      <button type="submit" [disabled]="ordering || !orderForm.valid" class="orderBtn">
+        <div *ngIf="!ordering">Bestel</div>
+        <div class="spinner-border" role="status" *ngIf="ordering">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+    </form>
+  </main>
+</div>
+
 

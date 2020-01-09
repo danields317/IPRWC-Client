@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OrderItem} from '../../models/orderItem';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/product';
+import {CartService} from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -16,8 +17,9 @@ export class CartItemComponent implements OnInit {
   private isLoading = true;
   private isLoadingImg = true;
   private totalPrice: number;
+  @Output() emitPrice: EventEmitter<number> = new EventEmitter();
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit() {
     this.getProduct(this.orderItem.productId);
@@ -50,6 +52,7 @@ export class CartItemComponent implements OnInit {
   handleProduct(data: Product) {
     this.product = data;
     this.totalPrice = this.orderItem.amount * this.product.price;
+    this.emitPrice.emit(this.totalPrice);
     this.isLoading = false;
   }
 
@@ -57,5 +60,11 @@ export class CartItemComponent implements OnInit {
     this.productImage = '../../../assets/img/600px-No_image_available.svg.png';
     this.isLoading = false;
   }
+
+  removeProduct() {
+    this.emitPrice.emit(-this.totalPrice);
+    this.cartService.removeItem(this.product.id);
+  }
+
 
 }

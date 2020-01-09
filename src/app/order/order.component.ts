@@ -21,6 +21,7 @@ export class OrderComponent implements OnInit {
   date = this.getMinimumDeliveryDate();
   cartItems: OrderItem[];
   error = false;
+  ordering = false;
 
   constructor(private accountService: AccountService, private cartService: CartService,
               private orderService: OrderService, private router: Router) {

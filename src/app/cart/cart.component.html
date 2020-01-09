@@ -1,5 +1,21 @@
 <app-header></app-header>
 <div class="container">
-  <app-cart-item *ngFor="let item of cartItems" [orderItem]="item"></app-cart-item>
+    <h1 class="line">Winkelwagen</h1>
+  <p *ngIf="orderItems.length === 0">Uw winkelwagen is leeg.</p>
+  <app-cart-item *ngFor="let item of orderItems" [orderItem]="item" (emitPrice)="countTotalPrice($event)"></app-cart-item>
+  <div class="card order-cont" *ngIf="orderItems.length != 0">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-3 offset-lg-9">
+          <p>Totale prijs: &euro; {{totalPrice}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 offset-lg-9">
+          <button (click)="onOrder()">Naar bestellen</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<button (click)="onOrder()">Bestel</button>
+

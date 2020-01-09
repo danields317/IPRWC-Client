@@ -11,11 +11,12 @@ import {Router} from '@angular/router';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-  cartItems: OrderItem[] = [];
+  orderItems: OrderItem[] = [];
   subscription: Subscription;
+  totalPrice = 0;
 
   constructor(private cartService: CartService, private router: Router) {
-    this.subscription = this.cartService.cartItems.subscribe(data => this.cartItems = data);
+    this.subscription = this.cartService.cartItems.subscribe(data => this.orderItems = data);
   }
 
   ngOnInit() {
@@ -28,5 +29,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   onOrder() {
     this.router.navigate(['/order']);
+  }
+
+  countTotalPrice(price) {
+    console.log(price);
+    this.totalPrice = this.totalPrice + price;
   }
 }

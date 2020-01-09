@@ -46,5 +46,4 @@ export class ProductListItemComponent implements OnInit {
   toProduct() {
     this.router.navigate(['/product/', this.product.id]);
   }
-
 }
