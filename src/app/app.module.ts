@@ -24,6 +24,9 @@ import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrderComponent } from './order/order.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { AdminComponent } from './admin/admin.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProductEditComponent } from './admin/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,12 +46,15 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     CartComponent,
     CartItemComponent,
     OrderComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    AdminComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({config: {
         tokenGetter: () => {
