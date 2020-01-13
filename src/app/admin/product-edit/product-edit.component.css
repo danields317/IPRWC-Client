@@ -1,0 +1,46 @@
+.product:hover {
+  background-color: #EAEAEA;
+  cursor: pointer;
+}
+
+.container {
+  padding: 2em 0;
+  min-height: 80vh;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th {
+  padding: 0.2em 0.4em;
+  border-bottom: 1px solid #231F20;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageControl label {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.pageControl button {
+  background-color: #AD974F;
+  border-radius: 20px;
+  width: 100%;
+  text-align: center;
+  border-color: #8E793E;
+}
+
+.pageControl button:disabled {
+  background-color: #AD974F !important;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.pageControl button:hover {
+  background-color: #8E793E;
+}

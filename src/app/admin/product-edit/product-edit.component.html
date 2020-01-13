@@ -1,7 +1,53 @@
+<app-header></app-header>
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
-      <div class=""
+    <div class="col-11">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product naam</th>
+            <th>Merk</th>
+            <th>Categorie</th>
+            <th>Voorraad</th>
+            <th>Prijs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
+            <th>{{product.id}}</th>
+            <th>{{product.productName}}</th>
+            <th>{{product.brand}}</th>
+            <th>{{product.category}}</th>
+            <th>{{product.stock}}</th>
+            <th>{{product.price}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-1 pageControl d-flex flex-column justify-content-center">
+      <button (click)="swapPage(-1)" [disabled]="page === 1">
+        <i class="material-icons">arrow_drop_up</i>
+      </button>
+      <br>
+      <label>{{page}}/{{maxPages}}</label>
+      <br>
+      <button (click)="swapPage(1)" [disabled]="page === maxPages">
+        <i class="material-icons">arrow_drop_down</i>
+      </button>
+    </div>
+    <div class="row" *ngIf="shownProduct">
+      <div class="col-lg-6">
+        <img [src]="shownProduct.thumbnail" class="img-fluid">
+      </div>
+      <div class="col-lg-6">
+        <form [formGroup]="productForm">
+          <div class="form-group">
+            <label for="productName">Product naam:</label>
+            <input id="productName" formControlName="productName">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
