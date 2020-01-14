@@ -1,53 +1,116 @@
 <app-header></app-header>
-<div class="container">
-  <div class="row">
-    <div class="col-11">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Product naam</th>
-            <th>Merk</th>
-            <th>Categorie</th>
-            <th>Voorraad</th>
-            <th>Prijs</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
-            <th>{{product.id}}</th>
-            <th>{{product.productName}}</th>
-            <th>{{product.brand}}</th>
-            <th>{{product.category}}</th>
-            <th>{{product.stock}}</th>
-            <th>{{product.price}}</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-1 pageControl d-flex flex-column justify-content-center">
-      <button (click)="swapPage(-1)" [disabled]="page === 1">
-        <i class="material-icons">arrow_drop_up</i>
-      </button>
-      <br>
-      <label>{{page}}/{{maxPages}}</label>
-      <br>
-      <button (click)="swapPage(1)" [disabled]="page === maxPages">
-        <i class="material-icons">arrow_drop_down</i>
-      </button>
-    </div>
-    <div class="row" *ngIf="shownProduct">
-      <div class="col-lg-6">
-        <img [src]="shownProduct.thumbnail" class="img-fluid">
+<ngb-tabset type="pills" orientation="horizontal">
+  <ngb-tab title="Bestaande producten">
+    <ng-template ngbTabContent>
+      <div class="container">
+        <div class="row">
+        <div class="col-12 col-lg-11">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product naam</th>
+              <th class="pcOnly">Merk</th>
+              <th class="pcOnly">Categorie</th>
+              <th class="pcOnly">Voorraad</th>
+              <th>Prijs</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
+              <th>{{product.id}}</th>
+              <th>{{product.productName}}</th>
+              <th class="pcOnly">{{product.brand}}</th>
+              <th class="pcOnly">{{product.category}}</th>
+              <th class="pcOnly">{{product.stock}}</th>
+              <th>{{product.price}}</th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
+          <button (click)="swapPage(-1)" [disabled]="page === 1">
+            <i class="material-icons">arrow_drop_up</i>
+          </button>
+          <br>
+          <label>{{page}}/{{maxPages}}</label>
+          <br>
+          <button (click)="swapPage(1)" [disabled]="page === maxPages">
+            <i class="material-icons">arrow_drop_down</i>
+          </button>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <form [formGroup]="productForm">
-          <div class="form-group">
-            <label for="productName">Product naam:</label>
-            <input id="productName" formControlName="productName">
+
+        <div class="row d-flex flex-row justify-content-center mobileOnly">
+          <div class="col-2">
+            <button (click)="swapPage(-1)" [disabled]="page === 1">
+              <i class="material-icons">arrow_left</i>
+            </button>
           </div>
-        </form>
+          <div class="col-2">
+            <label>{{page}}/{{maxPages}}</label>
+          </div>
+          <div class="col-2">
+            <button (click)="swapPage(1)" [disabled]="page === maxPages">
+              <i class="material-icons">arrow_right</i>
+            </button>
+          </div>
+        </div>
+
+        <div class="row edit" *ngIf="shownProduct">
+            <div class="col-lg-6 image d-flex align-items-center justify-content-center">
+              <img [src]="this.shownProductImg" class="img-fluid" *ngIf="this.shownProductImg">
+            </div>
+            <div class="col-lg-6 info">
+              <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+                <div class="form-group">
+                  <label for="thumbnail">Kies nieuwe product foto:</label>
+                  <br>
+                  <input type="file" id="thumbnail" accept="image/*" (change)="onFileSelect($event)">
+                </div>
+                <div class="form-group">
+                  <label for="productName">Product naam:</label>
+                  <input id="productName" formControlName="productName" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="productName">Beschrijving:</label>
+                  <textarea id="description" formControlName="description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="productName">Merk:</label>
+                  <input id="brand" formControlName="brand" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="productName">Prijs:</label>
+                  <input id="price" formControlName="price" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="productName">Voorraad:</label>
+                  <input id="stock" formControlName="stock" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="productName">Categorie:</label>
+                  <input id="category" formControlName="category" class="form-control">
+                </div>
+                <button type="submit" [disabled]="!this.productForm.valid" class="confirm btn btn-success">Update product</button>
+                <hr>
+                <button class="delete btn btn-danger" (click)="deleteProduct()">Verwijder product</button>
+              </form>
+            </div>
+        </div>
+
       </div>
-    </div>
-  </div>
-</div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Nieuw product">
+    <ng-template ngbTabContent>
+      <app-product-upload></app-product-upload>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Geplaatste orders">
+    <ng-template ngbTabContent>
+      <app-placed-orders></app-placed-orders>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

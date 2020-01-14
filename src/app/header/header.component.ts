@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   companyName;
   loggedIn;
+  isCollapsed = true;
 
   constructor(private constants: ConstantsService, private accountService: AccountService, private router: Router) {
     this.companyName = constants.appname;

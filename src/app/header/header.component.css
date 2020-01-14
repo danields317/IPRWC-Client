@@ -13,3 +13,14 @@ li a:hover {
 .logOut {
   border-left: 1px inset #231F20;
 }
+
+@media screen and (max-width: 992px) {
+  .logOut {
+    border-left: none;
+  }
+
+  nav {
+    text-align: center;
+    border-bottom: 1px solid #231F20;
+  }
+}

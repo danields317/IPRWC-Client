@@ -21,4 +21,16 @@ export class OrderService {
   handleError(errorResponse: HttpErrorResponse) {
     return throwError(errorResponse);
   }
+
+  getOrderList(pageSize: number, page: number) {
+    return this.httpService.makeGetRequest('order/all/' + pageSize + '/' + page).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
+    );
+  }
+
+  getOrder(id: number) {
+    return this.httpService.makeGetRequest('order/' + id).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
+    );
+  }
 }

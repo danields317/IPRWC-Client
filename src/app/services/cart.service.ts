@@ -11,9 +11,6 @@ export class CartService {
   public cartItems = new BehaviorSubject(null);
 
     constructor() {
-      console.log('alleen voor test doeleidnen');
-      this.cartItemsList.push({productId: '19', amount: 2});
-      this.cartItems.next(this.cartItemsList);
     }
 
     addItem(productId, amount) {

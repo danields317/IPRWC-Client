@@ -12,6 +12,7 @@ export class HomeHeaderComponent implements OnInit {
 
   companyName;
   loggedIn;
+  isCollapsed = true;
 
   constructor(private constants: ConstantsService, private router: Router, private accountService: AccountService) {
     this.companyName = this.constants.appname;

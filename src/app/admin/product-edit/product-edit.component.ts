@@ -12,11 +12,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ProductEditComponent implements OnInit {
 
   type = 'all';
-  pageSize = 3;
+  pageSize = 5;
   page = 1;
   maxPages: number;
   productList: Product[];
   shownProduct: Product;
+  shownProductImg;
   isLoading = false;
   productForm: FormGroup;
 
@@ -60,12 +61,17 @@ export class ProductEditComponent implements OnInit {
   createImageFromBlob(image: Blob) {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      this.shownProduct.thumbnail = reader.result,
-        this.isLoading = false;
+        this.handleImage(reader.result);
     }, false);
     if (image) {
       reader.readAsDataURL(image);
     }
+  }
+
+  handleImage(image) {
+    this.shownProductImg = image;
+    // this.productForm.patchValue({thumbnail: image});
+    this.isLoading = false;
   }
 
   handleNoImage() {
@@ -73,21 +79,59 @@ export class ProductEditComponent implements OnInit {
     this.isLoading = false;
   }
 
+  swapPage(amount: number) {
+    this.page = this.page + amount;
+    this.getProducts();
+  }
+
+  updateProduct() {
+    console.log(this.productForm);
+    this.productService.updateProduct(this.productFormToFormData()).subscribe(
+      data => this.handleUpdate(),
+      error => console.log('fail')
+    );
+  }
+
+  handleUpdate() {
+    this.getProducts();
+  }
+
   createForm() {
     this.productForm = new FormGroup({
       thumbnail: new FormControl(null, Validators.required),
-      id: new FormControl(null, Validators.required),
       productName: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       brand: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required),
-      stock: new FormControl(null, Validators.required),
+      price: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]+\.?[0-9]*$/)]),
+      stock: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]*$/)]),
       category: new FormControl(null, Validators.required)
     });
   }
 
-  swapPage(amount: number) {
-    this.page = this.page + amount;
-    this.getProducts();
+  productFormToFormData() {
+    const formData: any = new FormData();
+    formData.append('thumbnail', this.productForm.get('thumbnail').value);
+    formData.append('id', this.shownProduct.id);
+    formData.append('productName', this.productForm.get('productName').value);
+    formData.append('description', this.productForm.get('description').value);
+    formData.append('brand', this.productForm.get('brand').value);
+    formData.append('price', this.productForm.get('price').value);
+    formData.append('stock', this.productForm.get('stock').value);
+    formData.append('category', this.productForm.get('category').value);
+    return formData;
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.productForm.get('thumbnail').setValue(file);
+    }
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.shownProduct.id).subscribe(
+      data => this.handleUpdate(),
+      error => console.log('fail')
+    );
   }
 }

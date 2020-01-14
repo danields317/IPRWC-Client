@@ -51,4 +51,8 @@ button:hover {
     height: auto;
     text-align: center;
   }
+
+  .info-text {
+    display: none;
+  }
 }

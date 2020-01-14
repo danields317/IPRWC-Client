@@ -25,3 +25,10 @@ a {
 .arrow-cont:hover {
   filter: invert(1);
 }
+
+@media screen and (max-width: 992px) {
+  .arrow-cont {
+    display: none;
+  }
+}
+
