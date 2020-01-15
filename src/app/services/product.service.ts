@@ -42,6 +42,7 @@ export class ProductService {
   }
 
   deleteProduct(id) {
-    return this.httpService.makeDeleteRequest('product/' + id);
+    return this.httpService.makeDeleteRequest('product/' + id)
+      .pipe(catchError(error => this.handleError(error)));
   }
 }

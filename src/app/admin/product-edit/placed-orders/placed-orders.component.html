@@ -5,36 +5,36 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>Klant ID</th>
+          <th class="pcOnly">Klant ID</th>
           <th>Stad</th>
-          <th>Bezorg datum</th>
+          <th class="pcOnly">Bezorg datum</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let order of orderList" class="product" (click)="showOrder(order)">
           <th>{{order.id}}</th>
-          <th>{{order.accountId}}</th>
+          <th class="pcOnly">{{order.accountId}}</th>
           <th>{{order.deliveryCity}}</th>
-          <th>{{order.deliveryDate | date}}</th>
+          <th class="pcOnly">{{order.deliveryDate | date}}</th>
         </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcSwap">
+    <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
       <button (click)="swapPage(-1)" [disabled]="page === 1">
         <i class="material-icons">arrow_drop_up</i>
       </button>
       <br>
       <label>{{page}}/{{maxPages}}</label>
       <br>
-      <button (click)="swapPage(1)" [disabled]="page === maxPages">
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
         <i class="material-icons">arrow_drop_down</i>
       </button>
     </div>
   </div>
 
-  <div class="row d-flex flex-row justify-content-center mobileSwap">
+  <div class="row d-flex flex-row justify-content-center mobileOnly">
     <div class="col-2">
       <button (click)="swapPage(-1)" [disabled]="page === 1">
         <i class="material-icons">arrow_left</i>
@@ -44,14 +44,14 @@
       <label>{{page}}/{{maxPages}}</label>
     </div>
     <div class="col-2">
-      <button (click)="swapPage(1)" [disabled]="page === maxPages">
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
         <i class="material-icons">arrow_right</i>
       </button>
     </div>
   </div>
 
   <div class="row" *ngIf="shownOrder">
-    <div class="col-lg-6">
+    <div class="col-lg-6 orderDetails">
       <h2>Order details</h2>
       <div class="form-group">
         <label for="id">Order id:</label>
@@ -73,6 +73,7 @@
         <label for="date">Bezorg datum:</label>
         <div id="date" class="form-control">{{shownOrder.deliveryDate | date}}</div>
       </div>
+      <button class="btn btn-danger deleteBtn" (click)="removeOrder(shownOrder.id)">Verwijder bestelling</button>
     </div>
     <div class="col-lg-6">
       <h2>Producten</h2>

@@ -23,7 +23,7 @@
               <th class="pcOnly">{{product.brand}}</th>
               <th class="pcOnly">{{product.category}}</th>
               <th class="pcOnly">{{product.stock}}</th>
-              <th>{{product.price}}</th>
+              <th>{{product.price | currency: 'EUR'}}</th>
             </tr>
             </tbody>
           </table>
@@ -36,7 +36,7 @@
           <br>
           <label>{{page}}/{{maxPages}}</label>
           <br>
-          <button (click)="swapPage(1)" [disabled]="page === maxPages">
+          <button (click)="swapPage(1)" [disabled]="page >= maxPages">
             <i class="material-icons">arrow_drop_down</i>
           </button>
         </div>
@@ -48,17 +48,17 @@
               <i class="material-icons">arrow_left</i>
             </button>
           </div>
-          <div class="col-2">
+          <div class="col-2 d-flex flex-row justify-content-center">
             <label>{{page}}/{{maxPages}}</label>
           </div>
           <div class="col-2">
-            <button (click)="swapPage(1)" [disabled]="page === maxPages">
+            <button (click)="swapPage(1)" [disabled]="page >= maxPages">
               <i class="material-icons">arrow_right</i>
             </button>
           </div>
         </div>
 
-        <div class="row edit" *ngIf="shownProduct">
+        <div class="row" *ngIf="shownProduct" style="padding-top: 2em">
             <div class="col-lg-6 image d-flex align-items-center justify-content-center">
               <img [src]="this.shownProductImg" class="img-fluid" *ngIf="this.shownProductImg">
             </div>
@@ -95,7 +95,7 @@
                 </div>
                 <button type="submit" [disabled]="!this.productForm.valid" class="confirm btn btn-success">Update product</button>
                 <hr>
-                <button class="delete btn btn-danger" (click)="deleteProduct()">Verwijder product</button>
+                <button class="delete btn btn-danger" (click)="deleteProduct()" type="button">Verwijder product</button>
               </form>
             </div>
         </div>

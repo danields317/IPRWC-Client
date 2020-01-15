@@ -55,7 +55,6 @@ th {
 
 .edit {
   padding-top: 2em;
-  width: 100%;
 }
 
 .image {
@@ -94,13 +93,6 @@ th {
 
   .pcOnly {
     display: none !important;
-  }
-
-  .mobileSwap {
-    display: flex;
-  }
-
-  .edit {
   }
 }
 

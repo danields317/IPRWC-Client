@@ -33,4 +33,10 @@ export class OrderService {
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
     );
   }
+
+  removeOrder(id: number) {
+    return this.httpService.makeDeleteRequest('order/' + id).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
+    );
+  }
 }

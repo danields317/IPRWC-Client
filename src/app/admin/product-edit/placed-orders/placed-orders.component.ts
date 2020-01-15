@@ -17,7 +17,7 @@ export class PlacedOrdersComponent implements OnInit {
   maxPages: number;
   shownOrder: Order;
 
-  constructor(private orderService: OrderService ){
+  constructor(private orderService: OrderService) {
     this.getOrders();
   }
 
@@ -46,6 +46,18 @@ export class PlacedOrdersComponent implements OnInit {
 
   swapPage(amount: number) {
     this.page = this.page + amount;
+    this.getOrders();
+  }
+
+  removeOrder(id: number) {
+    this.orderService.removeOrder(id).subscribe(
+      () => this.manageDelete(),
+      error => console.log('fail')
+    );
+  }
+
+  manageDelete() {
+    this.shownOrder = null;
     this.getOrders();
   }
 }

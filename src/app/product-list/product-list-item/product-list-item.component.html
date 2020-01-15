@@ -13,6 +13,6 @@
   <div class="card-body h-25">
     <h5 class="card-title">{{product.productName}}</h5>
     <h6 class="card-subtitle">{{product.brand}}</h6>
-    <span class="badge badge-info">&euro; {{product.price}}</span>
+    <span class="badge badge-info">{{product.price|currency: 'EUR' }}</span>
   </div>
 </div>

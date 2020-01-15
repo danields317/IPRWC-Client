@@ -85,14 +85,17 @@ export class ProductEditComponent implements OnInit {
   }
 
   updateProduct() {
-    console.log(this.productForm);
     this.productService.updateProduct(this.productFormToFormData()).subscribe(
-      data => this.handleUpdate(),
-      error => console.log('fail')
+      data => this.handleUpdate(false),
+      error => console.log('paal')
     );
   }
 
-  handleUpdate() {
+  handleUpdate(removeShown: boolean) {
+    if (removeShown === true) {
+      this.shownProduct = null;
+    }
+    console.log('hoi');
     this.getProducts();
   }
 
@@ -130,8 +133,8 @@ export class ProductEditComponent implements OnInit {
 
   deleteProduct() {
     this.productService.deleteProduct(this.shownProduct.id).subscribe(
-      data => this.handleUpdate(),
-      error => console.log('fail')
+      data => this.handleUpdate(true),
+      error => console.log('fool')
     );
   }
 }

@@ -37,7 +37,7 @@ export class ProductUploadComponent implements OnInit {
   }
 
   handleSuccess() {
-    console.log('succes');
+    this.productForm.reset();
   }
 
   handleFail() {

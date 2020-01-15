@@ -9,7 +9,7 @@
     Aantal: {{orderItem.amount}}
   </div>
   <div class="col-lg-2">
-    &euro; {{totalPrice}}
+    {{totalPrice | currency: 'EUR'}}
   </div>
   <div class="col-lg-2">
     <button class="delete-button" (click)="removeProduct()">
