@@ -95,7 +95,6 @@ export class ProductEditComponent implements OnInit {
     if (removeShown === true) {
       this.shownProduct = null;
     }
-    console.log('hoi');
     this.getProducts();
   }
 

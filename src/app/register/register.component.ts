@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit {
   }
 
   private accountCreated() {
-    console.log('succes');
     this.registering = false;
   }
 

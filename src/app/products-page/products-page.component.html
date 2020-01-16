@@ -1,4 +1,9 @@
-<app-header></app-header>
-<div>
+<div class="container">
+  <div class="card align-items-center justify-content-center" [ngStyle]="{backgroundImage: background}">
+  </div>
+</div>
+<div class="list-wrapper">
   <app-product-list></app-product-list>
 </div>
+<ngb-pagination class="pages" [collectionSize]="maxPages * 10" [(page)]="currentPage" [maxSize]="5" [rotate]="true"
+                      [ellipses]="false" [boundaryLinks]="true" (pageChange)="getProducts()"></ngb-pagination>

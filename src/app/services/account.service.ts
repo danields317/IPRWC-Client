@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from './http.service';
-import {catchError} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, Subject, throwError} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
@@ -14,6 +14,7 @@ import {Account} from '../models/account';
 export class AccountService {
 
   public loggedIn = new BehaviorSubject(false);
+  private account: Account;
 
   constructor(private httpService: HttpService, private jwtHelperService: JwtHelperService, private router: Router,
               private cartService: CartService) {
@@ -28,6 +29,7 @@ export class AccountService {
 
   getUserData() {
     return this.httpService.makeGetRequest('account').pipe(
+      tap( (data: Account) =>  this.account = data),
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
     );
   }
@@ -42,6 +44,7 @@ export class AccountService {
     localStorage.setItem('id_token', token);
     this.loggedIn.next(true);
     setTimeout(() => this.getRefreshToken(), timeTillRefresh - 60000);
+    this.getUserData().subscribe();
   }
 
   getRefreshToken() {
@@ -78,5 +81,9 @@ export class AccountService {
   registerNewAccount(account: Account) {
     return this.httpService.makePostRequest('account', account).pipe(
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
+  }
+
+  getAccount(): Account {
+    return this.account;
   }
 }

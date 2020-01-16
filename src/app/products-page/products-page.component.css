@@ -1,4 +1,33 @@
-div{
+.list-wrapper {
   padding: 2em 0;
   min-height: 80vh;
 }
+
+.card {
+  margin-top: 1em;
+  border-radius: 25px;
+  height: 20vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+}
+
+/deep/ .pagination .active .page-link {
+  background-color: #AD974F;
+}
+
+/deep/ .pagination .page-item .page-link{
+  border-color: #8E793E;
+  color: #231F20;
+}
+
+/deep/ .pagination .page-item .page-link:focus{
+  outline: none !important;
+  border: 1px solid #8E793E;
+  box-shadow: 0 0 10px #AD974F;
+}
+

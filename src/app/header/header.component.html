@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" [ngStyle]="{'background-color':this.router.url === '/' ? 'transparent' : '#EAEAEA' }" [ngClass]="this.router.url === '/' ? 'fixed-top' : ''">
   <a class="navbar-brand" (click)="toHome()">{{companyName}}</a>
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
     &#9776;

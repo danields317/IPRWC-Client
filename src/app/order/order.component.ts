@@ -22,6 +22,7 @@ export class OrderComponent implements OnInit {
   cartItems: OrderItem[];
   error = false;
   ordering = false;
+  isChecked = false;
 
   constructor(private accountService: AccountService, private cartService: CartService,
               private orderService: OrderService, private router: Router) {
@@ -72,5 +73,19 @@ export class OrderComponent implements OnInit {
 
   private handleError() {
     this.error = true;
+  }
+
+  loadDetails() {
+    const account: Account = this.accountService.getAccount();
+    if (this.isChecked === true) {
+      this.orderForm.patchValue({
+        deliveryCity: account.city,
+        deliveryAddress: account.street,
+        deliveryNumber: account.houseNumber
+        });
+    } else {
+      this.orderForm.reset();
+    }
+
   }
 }

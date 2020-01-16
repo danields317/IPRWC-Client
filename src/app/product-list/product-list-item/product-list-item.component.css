@@ -1,6 +1,7 @@
 .card {
   border-radius: 25px;
   border-color: #AD974F;
+  height: 100%;
 }
 
 img {
@@ -9,11 +10,11 @@ img {
 
 .card:hover {
   cursor: pointer;
-  transform: scale(1.05);
-  box-shadow: 0 0 30px 10px #8E793E;
+  box-shadow: 0 0 30px 5px #8E793E;
 }
 
 .card-body {
+  border-top: 1px solid #AD974F;
   padding-top: 10px;
   color: #231F20;
   background-color: #EAEAEA;

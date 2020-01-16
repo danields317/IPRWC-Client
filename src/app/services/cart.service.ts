@@ -60,7 +60,6 @@ export class CartService {
       } else {
         this.cartItemsList = result;
       }
-      console.log(this.cartItemsList);
       this.cartItems.next(this.cartItemsList);
     }
 

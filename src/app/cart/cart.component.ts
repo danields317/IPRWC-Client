@@ -32,7 +32,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   countTotalPrice(price) {
-    console.log(price);
     this.totalPrice = this.totalPrice + price;
   }
 }

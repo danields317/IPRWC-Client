@@ -4,7 +4,7 @@ import {ProductService} from '../services/product.service';
 import {ProductList} from '../models/productList';
 import {ProductListComponent} from '../product-list/product-list.component';
 import {ActivatedRoute, Params} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-products-page',
@@ -15,11 +15,13 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   @ViewChild(ProductListComponent, {static: true}) productList: ProductListComponent;
 
-  pageSize = 10;
+  pageSize = 6;
   currentPage = 1;
   maxPages;
   type;
   subscription: Subscription;
+  background = 'url(../../assets/img/wrist-watches.jpg)';
+  text: string;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {
     this.subscription = this.route.params.subscribe(
@@ -44,10 +46,28 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   handlePageChange(type) {
     this.type = type;
+    this.getCardContent(this.type);
     this.getProducts();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  getCardContent(type) {
+    if (type === 'all') {
+      this.background = 'url(../../assets/img/wrist-watches.jpg)';
+      this.text = 'Alle horloges';
+    } else if (type === 'men') {
+      this.background = 'url(../../assets/img/wristwatch-1149669_1280.jpg)';
+      this.text = 'Heren horloges';
+    } else if (type === 'ladies') {
+      this.background = 'url(../../assets/img/womanOnTrunk.jpg)';
+      this.text = 'Dames horloges';
+    } else if (type === 'smartwatch') {
+      this.background = 'url(../../assets/img/smartWatches.jpg)';
+      this.text = 'Smart watches';
+    }
+  }
+
 }

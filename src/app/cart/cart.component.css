@@ -28,3 +28,7 @@ button:disabled {
 button:hover {
   background-color: #8E793E;
 }
+
+.card {
+  margin-bottom: 2em;
+}
