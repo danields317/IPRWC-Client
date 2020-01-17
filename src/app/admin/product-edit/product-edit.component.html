@@ -17,12 +17,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
-              <th>{{product.id}}</th>
-              <th>{{product.productName}}</th>
-              <th class="pcOnly">{{product.brand}}</th>
-              <th class="pcOnly">{{product.category}}</th>
-              <th class="pcOnly">{{product.stock}}</th>
-              <th>{{product.price | currency: 'EUR'}}</th>
+              <td>{{product.id}}</td>
+              <td>{{product.productName}}</td>
+              <td class="pcOnly">{{product.brand}}</td>
+              <td class="pcOnly">{{product.category}}</td>
+              <td class="pcOnly">{{product.stock}}</td>
+              <td>{{product.price | currency: 'EUR'}}</td>
             </tr>
             </tbody>
           </table>

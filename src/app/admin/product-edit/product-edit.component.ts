@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {ProductList} from '../../models/productList';
 import {Product} from '../../models/product';
@@ -70,7 +70,6 @@ export class ProductEditComponent implements OnInit {
 
   handleImage(image) {
     this.shownProductImg = image;
-    // this.productForm.patchValue({thumbnail: image});
     this.isLoading = false;
   }
 
@@ -86,7 +85,7 @@ export class ProductEditComponent implements OnInit {
 
   updateProduct() {
     this.productService.updateProduct(this.productFormToFormData()).subscribe(
-      data => this.handleUpdate(false),
+      data => this.handleUpdate(true),
       error => console.log('paal')
     );
   }
@@ -95,12 +94,13 @@ export class ProductEditComponent implements OnInit {
     if (removeShown === true) {
       this.shownProduct = null;
     }
+    this.resetImgInput();
     this.getProducts();
   }
 
   createForm() {
     this.productForm = new FormGroup({
-      thumbnail: new FormControl(null, Validators.required),
+      thumbnail: new FormControl(),
       productName: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       brand: new FormControl(null, Validators.required),
@@ -135,5 +135,9 @@ export class ProductEditComponent implements OnInit {
       data => this.handleUpdate(true),
       error => console.log('fool')
     );
+  }
+
+  resetImgInput() {
+    this.productForm.get('thumbnail').reset();
   }
 }

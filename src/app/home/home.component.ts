@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ConstantsService} from '../services/constants.service';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   showNavigationIndicators: false;
   pauseOnHover = false;
 
-  constructor(config: NgbCarouselConfig, private constants: ConstantsService) {
+  constructor(config: NgbCarouselConfig, private constants: ConstantsService, private viewportScroller: ViewportScroller) {
     config.interval = this.interval;
     config.showNavigationArrows = this.showNavigationArrows;
     config.showNavigationIndicators = this.showNavigationIndicators;

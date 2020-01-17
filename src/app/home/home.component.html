@@ -7,7 +7,7 @@
       <h3>Onberispelijk</h3>
     </div>
     <div class="carousel-caption arrow-cont">
-      <a href="#menu">
+      <a (click)="menu.scrollIntoView({ behavior: 'smooth', block: 'center' })">
         <hr>
         <p>Kijk verder</p>
         <img src="../../assets/img/keyboard_arrow_down.svg" class="arrow">
@@ -22,7 +22,7 @@
       <h3>Modieus</h3>
     </div>
     <div class="carousel-caption arrow-cont">
-      <a href="#menu">
+      <a (click)="menu.scrollIntoView({ behavior: 'smooth', block: 'center' })">
         <hr>
         <p>Kijk verder</p>
         <img src="../../assets/img/keyboard_arrow_down.svg" class="arrow">
@@ -37,7 +37,7 @@
       <h3>Robuust</h3>
     </div>
     <div class="carousel-caption arrow-cont">
-      <a href="#menu">
+      <a (click)="menu.scrollIntoView({ behavior: 'smooth', block: 'center'})">
         <hr>
         <p>Kijk verder</p>
         <img src="../../assets/img/keyboard_arrow_down.svg" class="arrow">
@@ -45,4 +45,6 @@
     </div>
   </ng-template>
 </ngb-carousel>
-<app-menu id="menu"></app-menu>
+<div #menu>
+  <app-menu></app-menu>
+</div>

@@ -12,10 +12,10 @@
         </thead>
         <tbody>
         <tr *ngFor="let order of orderList" class="product" (click)="showOrder(order)">
-          <th>{{order.id}}</th>
-          <th class="pcOnly">{{order.accountId}}</th>
-          <th>{{order.deliveryCity}}</th>
-          <th class="pcOnly">{{order.deliveryDate | date}}</th>
+          <td>{{order.id}}</td>
+          <td class="pcOnly">{{order.accountId}}</td>
+          <td>{{order.deliveryCity}}</td>
+          <td class="pcOnly">{{order.deliveryDate | date}}</td>
         </tr>
         </tbody>
       </table>
@@ -87,9 +87,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of shownOrder.items">
-          <th>{{item.productId}}</th>
-          <th>{{item.product.productName}}</th>
-          <th>{{item.amount}}</th>
+          <td>{{item.productId}}</td>
+          <td>{{item.product.productName}}</td>
+          <td>{{item.amount}}</td>
         </tr>
         </tbody>
       </table>
