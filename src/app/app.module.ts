@@ -30,6 +30,7 @@ import { ProductUploadComponent } from './admin/product-upload/product-upload.co
 import { PlacedOrdersComponent } from './admin/placed-orders/placed-orders.component';
 import { AccountEditComponent } from './admin/account-edit/account-edit.component';
 import { AccountAddComponent } from './admin/account-add/account-add.component';
+import {GuardService} from './guard-service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { AccountAddComponent } from './admin/account-add/account-add.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

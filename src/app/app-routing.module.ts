@@ -9,7 +9,7 @@ import {OrderComponent} from './order/order.component';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {RegisterComponent} from './register/register.component';
 import {AdminComponent} from './admin/admin.component';
-import {ProductEditComponent} from './admin/product-edit/product-edit.component';
+import {GuardService} from './guard-service';
 
 
 const routes: Routes = [
@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'confirmation', component: ConfirmationComponent},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', canActivate: [GuardService], component: AdminComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
