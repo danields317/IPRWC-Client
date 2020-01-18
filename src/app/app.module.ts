@@ -15,7 +15,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProductsPageComponent } from './products-page/products-page.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
-import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { ProductComponent } from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
@@ -45,7 +44,6 @@ import { AccountAddComponent } from './admin/account-add/account-add.component';
     ProductsPageComponent,
     ProductListComponent,
     ProductListItemComponent,
-    HomeHeaderComponent,
     ProductComponent,
     CartComponent,
     CartItemComponent,

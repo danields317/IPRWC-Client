@@ -10,25 +10,31 @@
     <input id="productName" formControlName="productName" class="form-control">
   </div>
   <div class="form-group">
-    <label for="productName">Beschrijving:</label>
+    <label for="description">Beschrijving:</label>
     <textarea id="description" formControlName="description" class="form-control"></textarea>
   </div>
   <div class="form-group">
-    <label for="productName">Merk:</label>
+    <label for="brand">Merk:</label>
     <input id="brand" formControlName="brand" class="form-control">
   </div>
   <div class="form-group">
-    <label for="productName">Prijs:</label>
+    <label for="price">Prijs:</label>
     <input id="price" formControlName="price" class="form-control">
   </div>
   <div class="form-group">
-    <label for="productName">Voorraad:</label>
+    <label for="stock">Voorraad:</label>
     <input id="stock" formControlName="stock" class="form-control">
   </div>
   <div class="form-group">
-    <label for="productName">Categorie:</label>
-    <input id="category" formControlName="category" class="form-control">
+    <label for="category">Account rol:</label>
+    <select id="category"  formControlName="category" class="form-control">
+      <option selected [ngValue]="'men'">Heren horloge</option>
+      <option [ngValue]="'ladies'">Dames horloge</option>
+      <option [ngValue]="'smartwatch'">Smartwatch</option>
+    </select>
   </div>
   <button type="submit" class="confirm btn btn-success" [disabled]="!this.productForm.valid || !this.productForm.touched">Upload product</button>
 </form>
 </div>
+
+

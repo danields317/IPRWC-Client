@@ -19,3 +19,12 @@ button:disabled {
 button:hover {
   background-color: #8E793E;
 }
+
+@media screen and (max-width: 992px) {
+  main {
+    text-align: center;
+  }
+  button {
+    width: 80%;
+  }
+}

@@ -14,7 +14,6 @@ export class HttpService {
     return this.http.get(this.constants.apiUrl + query);
   }
   makePostRequest(query: string, body: any) {
-    console.log(this.constants.apiUrl + query);
     return this.http.post(this.constants.apiUrl + query, body);
   }
   makeDeleteRequest(query: string) {

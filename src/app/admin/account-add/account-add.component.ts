@@ -42,7 +42,6 @@ export class AccountAddComponent implements OnInit {
       street: this.accountForm.get('street').value,
       houseNumber: this.accountForm.get('houseNumber').value
     };
-    console.log(this.accountForm.get('accountRole').value);
     this.accountService.registerAdminAccount(account).subscribe(
       data => this.handleSuccess(),
       error => this.handleError()

@@ -15,6 +15,7 @@ export class AccountService {
 
   public loggedIn = new BehaviorSubject(false);
   private account: Account;
+  public accountSubject: Subject<any> = new Subject<any>();
 
   constructor(private httpService: HttpService, private jwtHelperService: JwtHelperService, private router: Router,
               private cartService: CartService) {
@@ -29,9 +30,14 @@ export class AccountService {
 
   getUserData() {
     return this.httpService.makeGetRequest('account').pipe(
-      tap( (data: Account) =>  this.account = data),
+      tap( (data: Account) =>  this.setUserData(data)),
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
     );
+  }
+
+  setUserData(data: Account) {
+    this.account = data;
+    this.accountSubject.next(data);
   }
 
   handleError(errorResponse: HttpErrorResponse) {
