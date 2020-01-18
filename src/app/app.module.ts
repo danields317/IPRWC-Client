@@ -27,8 +27,10 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ProductEditComponent } from './admin/product-edit/product-edit.component';
-import { ProductUploadComponent } from './admin/product-edit/product-upload/product-upload.component';
-import { PlacedOrdersComponent } from './admin/product-edit/placed-orders/placed-orders.component';
+import { ProductUploadComponent } from './admin/product-upload/product-upload.component';
+import { PlacedOrdersComponent } from './admin/placed-orders/placed-orders.component';
+import { AccountEditComponent } from './admin/account-edit/account-edit.component';
+import { AccountAddComponent } from './admin/account-add/account-add.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { PlacedOrdersComponent } from './admin/product-edit/placed-orders/placed
     AdminComponent,
     ProductEditComponent,
     ProductUploadComponent,
-    PlacedOrdersComponent
+    PlacedOrdersComponent,
+    AccountEditComponent,
+    AccountAddComponent
   ],
   imports: [
     BrowserModule,

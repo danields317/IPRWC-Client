@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ProductService} from '../../../services/product.service';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-product-upload',

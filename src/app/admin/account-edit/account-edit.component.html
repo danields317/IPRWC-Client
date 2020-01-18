@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-11">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email address</th>
+          <th class="pcOnly">Voornaam</th>
+          <th class="pcOnly">Achternaam</th>
+          <th>Rol</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let account of accountList" class="account" (click)="showAccount(account)">
+          <td>{{account.accountId}}</td>
+          <td>{{account.emailAddress}}</td>
+          <td class="pcOnly">{{account.firstName}}</td>
+          <td class="pcOnly">{{account.lastName}}</td>
+          <td>{{account.accountRole}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
+      <button (click)="swapPage(-1)" [disabled]="page === 1">
+        <i class="material-icons">arrow_drop_up</i>
+      </button>
+      <br>
+      <label>{{page}}/{{maxPages}}</label>
+      <br>
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
+        <i class="material-icons">arrow_drop_down</i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row d-flex flex-row justify-content-center mobileOnly">
+    <div class="col-2">
+      <button (click)="swapPage(-1)" [disabled]="page === 1">
+        <i class="material-icons">arrow_left</i>
+      </button>
+    </div>
+    <div class="col-2 d-flex flex-row justify-content-center">
+      <label>{{page}}/{{maxPages}}</label>
+    </div>
+    <div class="col-2">
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
+        <i class="material-icons">arrow_right</i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row justify-content-center" *ngIf="shownAccount" style="padding-top: 2em">
+    <div class="col-lg-6 info">
+      <form [formGroup]="accountForm" (ngSubmit)="updateAccount()">
+        <div class="form-group">
+          <label for="emailAddress">E-mailadres:</label>
+          <input id="emailAddress" formControlName="emailAddress" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="firstName">Voornaam:</label>
+          <input id="firstName" formControlName="firstName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Achternaam:</label>
+          <input id="lastName" formControlName="lastName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="city">Woonplaats:</label>
+          <input id="city" formControlName="city" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="street">Straatnaam:</label>
+          <input id="street" formControlName="street" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="houseNumber">Huisnummer:</label>
+          <input id="houseNumber" formControlName="houseNumber" class="form-control">
+        </div>
+        <button type="submit" [disabled]="!this.accountForm.valid" class="confirm btn btn-success">Update account</button>
+        <hr>
+        <button class="delete btn btn-danger" (click)="deleteAccount()" type="button">Verwijder account</button>
+      </form>
+    </div>
+  </div>
+
+</div>

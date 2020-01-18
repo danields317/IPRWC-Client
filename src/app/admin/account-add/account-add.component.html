@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="accountForm" (ngSubmit)="uploadAccount()">
+    <div class="form-group">
+      <label for="emailAddress">E-mailadres:</label>
+      <input id="emailAddress" formControlName="emailAddress" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="hash">Wachtwoord:</label>
+      <input type="password" id="hash" formControlName="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="firstName">Voornaam:</label>
+      <input id="firstName" formControlName="firstName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Achternaam:</label>
+      <input id="lastName" formControlName="lastName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="city">Woonplaats:</label>
+      <input id="city" formControlName="city" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="street">Straatnaam:</label>
+      <input id="street" formControlName="street" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="houseNumber">Huisnummer:</label>
+      <input id="houseNumber" formControlName="houseNumber" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="accountRole">Account rol:</label>
+      <select id="accountRole"  formControlName="accountRole" class="form-control">
+        <option selected [ngValue]="'Customer'">Klant</option>
+        <option [ngValue]="'Admin'">Administrator</option>
+      </select>
+    </div>
+    <button type="submit" class="confirm btn btn-success" [disabled]="!this.accountForm.valid || !this.accountForm.touched">Creëer account</button>
+  </form>
+</div>

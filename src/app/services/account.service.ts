@@ -83,7 +83,27 @@ export class AccountService {
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
   }
 
+  registerAdminAccount(account: Account) {
+    return this.httpService.makePostRequest('account/admin', account).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
+  }
+
   getAccount(): Account {
     return this.account;
+  }
+
+  getAccountList(pageSize: number, page: number) {
+    return this.httpService.makeGetRequest('account/all/' + pageSize + '/' + page).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
+  }
+
+  updateAccount(updatedAccount: Account) {
+    return this.httpService.makePutRequest('account/' + updatedAccount.accountId, updatedAccount).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
+  }
+
+  deleteAccount(accountId: number) {
+    return this.httpService.makeDeleteRequest('account/' + accountId).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
   }
 }

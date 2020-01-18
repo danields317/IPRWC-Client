@@ -1,0 +1,8 @@
+form {
+  padding-top: 2em;
+  min-height: 80vh;
+}
+
+button:disabled {
+  cursor: default;
+}

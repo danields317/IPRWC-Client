@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Order} from '../../../models/order';
-import {OrderService} from '../../../services/order.service';
-import {OrderList} from '../../../models/orderList';
+import {Order} from '../../models/order';
+import {OrderService} from '../../services/order.service';
+import {OrderList} from '../../models/orderList';
 
 @Component({
   selector: 'app-placed-orders',
