@@ -1,9 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ConstantsService} from '../services/constants.service';
 import {AccountService} from '../services/account.service';
 import {Router} from '@angular/router';
 import {Account} from '../models/account';
 import {Subscription} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loginSub: Subscription;
   accountSub: Subscription;
 
-  constructor(private constants: ConstantsService, private accountService: AccountService, private router: Router) {
-    this.companyName = constants.appname;
+  constructor(private accountService: AccountService, private router: Router) {
+    this.companyName = environment.appName;
   }
 
   ngOnInit() {

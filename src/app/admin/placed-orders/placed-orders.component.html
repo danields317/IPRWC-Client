@@ -36,7 +36,7 @@
 
   <div class="row d-flex flex-row justify-content-center mobileOnly">
     <div class="col-2">
-      <button (click)="swapPage(-1)" [disabled]="page === 1">
+      <button (click)="swapPage(-1)" [disabled]="page === 1" class="mobilePage">
         <i class="material-icons">arrow_left</i>
       </button>
     </div>
@@ -44,7 +44,7 @@
       <label>{{page}}/{{maxPages}}</label>
     </div>
     <div class="col-2">
-      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages" class="mobilePage">
         <i class="material-icons">arrow_right</i>
       </button>
     </div>

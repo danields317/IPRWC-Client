@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ConstantsService {
   readonly appname = 'The Time Factory';
-  readonly apiUrl = 'http://localhost:8080/api/';
 
   constructor() { }
 }

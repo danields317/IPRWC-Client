@@ -1,7 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
-import {ConstantsService} from '../services/constants.service';
-import {ViewportScroller} from '@angular/common';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +16,12 @@ export class HomeComponent implements OnInit {
   showNavigationIndicators: false;
   pauseOnHover = false;
 
-  constructor(config: NgbCarouselConfig, private constants: ConstantsService, private viewportScroller: ViewportScroller) {
+  constructor(config: NgbCarouselConfig) {
     config.interval = this.interval;
     config.showNavigationArrows = this.showNavigationArrows;
     config.showNavigationIndicators = this.showNavigationIndicators;
     config.pauseOnHover = this.pauseOnHover;
-    this.companyName = constants.appname;
+    this.companyName = environment.appName;
   }
 
   ngOnInit() {
@@ -33,8 +32,7 @@ export class HomeComponent implements OnInit {
     this.images = [
       '../../assets/img/hunters-race-MYbhN8KaaEc-unsplash.jpg',
       '../../assets/img/allef-vinicius-1-unsplash.jpg',
-      '../../assets/img/hunters-race-hNoSCxPWYII-unsplash.jpg',
-      '../../assets/img/OmegaPlanet.jpg'
+      '../../assets/img/hunters-race-hNoSCxPWYII-unsplash.jpg'
     ];
   }
 }

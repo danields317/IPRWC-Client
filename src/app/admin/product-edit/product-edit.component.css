@@ -65,6 +65,14 @@ th, td {
   width: 50%;
 }
 
+.mobilePage {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
  .nav-item{
     width: 100%;

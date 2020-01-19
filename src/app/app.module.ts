@@ -9,7 +9,6 @@ import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ScrollSpyDirective } from './directives/scroll-spy.directive';
 import { MenuComponent } from './home/menu/menu.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductsPageComponent } from './products-page/products-page.component';
@@ -18,7 +17,6 @@ import { ProductListItemComponent } from './product-list/product-list-item/produ
 import { ProductComponent } from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
-import {config} from 'rxjs';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrderComponent } from './order/order.component';
@@ -40,7 +38,6 @@ import {GuardService} from './guard-service';
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    ScrollSpyDirective,
     MenuComponent,
     ProductsPageComponent,
     ProductListComponent,
