@@ -16,7 +16,6 @@ export class OrdersComponent implements OnInit {
   page = 1;
   maxPages: number;
   orderList: Order[];
-  orderShown = false;
 
   constructor(private orderService: OrderService) {
     this.getPersonalOrders();
@@ -45,6 +44,6 @@ export class OrdersComponent implements OnInit {
 
   showOrder(order: Order) {
     this.shownOrderComponent.shownOrder = order;
-    this.orderShown = true;
+    this.shownOrderComponent.getFullOrder();
   }
 }

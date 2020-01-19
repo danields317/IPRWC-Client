@@ -45,4 +45,10 @@ export class OrderService {
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
     );
   }
+
+  getPersonalOrder(id: number) {
+    return this.httpService.makeGetRequest('order/personal/' + id).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse))
+    );
+  }
 }

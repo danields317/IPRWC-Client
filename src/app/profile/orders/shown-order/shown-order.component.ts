@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Order} from '../../../models/order';
+import {OrderService} from '../../../services/order.service';
 
 @Component({
   selector: 'app-shown-order',
@@ -10,10 +11,16 @@ export class ShownOrderComponent implements OnInit {
 
   @Input() shownOrder: Order;
 
-  constructor() {
+  constructor(private orderService: OrderService) {
   }
 
   ngOnInit() {
+  }
+
+  getFullOrder() {
+    this.orderService.getPersonalOrder(this.shownOrder.id).subscribe(
+      (data: Order) => this.shownOrder = data
+    );
   }
 
 }
