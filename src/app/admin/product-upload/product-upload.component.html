@@ -33,8 +33,14 @@
       <option [ngValue]="'smartwatch'">Smartwatch</option>
     </select>
   </div>
-  <button type="submit" class="confirm btn btn-success" [disabled]="!this.productForm.valid || !this.productForm.touched">Upload product</button>
+  <button type="submit" class="confirm btn btn-success" [disabled]="!this.productForm.valid || !this.productForm.touched || creatingProduct">
+    <div *ngIf="!creatingProduct">Upload product</div>
+    <div class="spinner-border" role="status" *ngIf="creatingProduct">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </button>
 </form>
 </div>
+<app-toasts></app-toasts>
 
 

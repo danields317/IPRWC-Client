@@ -3,6 +3,7 @@ import {ProductService} from '../../services/product.service';
 import {ProductList} from '../../models/productList';
 import {Product} from '../../models/product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ToastService} from '../../toastService/toast-service';
 
 @Component({
   selector: 'app-product-edit',
@@ -20,8 +21,11 @@ export class ProductEditComponent implements OnInit {
   shownProductImg;
   isLoading = false;
   productForm: FormGroup;
+  sendingRequest = false;
+  updating = false;
+  deleting = false;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private toastService: ToastService) {
     this.getProducts();
     this.createForm();
   }
@@ -83,21 +87,6 @@ export class ProductEditComponent implements OnInit {
     this.getProducts();
   }
 
-  updateProduct() {
-    this.productService.updateProduct(this.productFormToFormData()).subscribe(
-      data => this.handleUpdate(true),
-      error => console.log('paal')
-    );
-  }
-
-  handleUpdate(removeShown: boolean) {
-    if (removeShown === true) {
-      this.shownProduct = null;
-    }
-    this.resetImgInput();
-    this.getProducts();
-  }
-
   createForm() {
     this.productForm = new FormGroup({
       thumbnail: new FormControl(),
@@ -130,14 +119,44 @@ export class ProductEditComponent implements OnInit {
     }
   }
 
-  deleteProduct() {
-    this.productService.deleteProduct(this.shownProduct.id).subscribe(
-      data => this.handleUpdate(true),
-      error => console.log('fool')
+  updateProduct() {
+    this.sendingRequest = true;
+    this.updating = true;
+    this.productService.updateProduct(this.productFormToFormData()).subscribe(
+      data => this.handleUpdate('Product Geüpdatet.'),
+      error => this.handleFail('Kon product niet updaten.')
     );
+  }
+
+  deleteProduct() {
+    this.sendingRequest = true;
+    this.deleting = true;
+    this.productService.deleteProduct(this.shownProduct.id).subscribe(
+      data => this.handleUpdate('Product verwijderd.'),
+      error => this.handleFail('Kon product niet verwijderen.')
+    );
+  }
+
+  handleUpdate(toastText: string) {
+    this.toastService.showSuccessToast(toastText);
+    this.shownProduct = null;
+    this.resetImgInput();
+    this.getProducts();
+    this.resetLoaders();
+  }
+
+  handleFail(toastText: string) {
+    this.toastService.showErrorToast(toastText);
+    this.resetLoaders();
   }
 
   resetImgInput() {
     this.productForm.get('thumbnail').reset();
+  }
+
+  resetLoaders() {
+    this.updating = false;
+    this.deleting = false;
+    this.sendingRequest = false;
   }
 }

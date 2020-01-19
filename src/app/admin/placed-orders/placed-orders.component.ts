@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Order} from '../../models/order';
 import {OrderService} from '../../services/order.service';
 import {OrderList} from '../../models/orderList';
+import {ToastService} from '../../toastService/toast-service';
 
 @Component({
   selector: 'app-placed-orders',
@@ -15,8 +16,9 @@ export class PlacedOrdersComponent implements OnInit {
   orderList: Order[];
   maxPages: number;
   shownOrder: Order;
+  deleting = false;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private toastService: ToastService) {
     this.getOrders();
   }
 
@@ -49,14 +51,21 @@ export class PlacedOrdersComponent implements OnInit {
   }
 
   removeOrder(id: number) {
+    this.deleting = true;
     this.orderService.removeOrder(id).subscribe(
       () => this.manageDelete(),
-      error => console.log('fail')
+      error => this.handleFail()
     );
   }
 
   manageDelete() {
+    this.toastService.showSuccessToast('Bestelling verwijderd.');
     this.shownOrder = null;
     this.getOrders();
   }
+
+  handleFail() {
+    this.toastService.showErrorToast('Kon bestelling niet verwijderen.');
+  }
+
 }

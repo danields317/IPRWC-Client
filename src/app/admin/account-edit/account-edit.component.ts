@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../services/account.service';
 import {AccountList} from '../../models/accountList';
 import {Account} from '../../models/account';
+import {ToastService} from '../../toastService/toast-service';
 
 @Component({
   selector: 'app-account-edit',
@@ -17,8 +18,11 @@ export class AccountEditComponent implements OnInit {
   accountList: Account[];
   shownAccount: Account;
   accountForm: FormGroup;
+  sendingRequest = false;
+  updating = false;
+  deleting = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private toastService: ToastService) {
     this.createForm();
     this.getAccounts();
   }
@@ -68,6 +72,8 @@ export class AccountEditComponent implements OnInit {
   }
 
   updateAccount() {
+    this.sendingRequest = true;
+    this.updating = true;
     const updatedAccount: Account = {
       accountId: this.shownAccount.accountId,
       firstName: this.accountForm.get('firstName').value,
@@ -80,22 +86,35 @@ export class AccountEditComponent implements OnInit {
       accountRole: ''
     };
     this.accountService.updateAccount(updatedAccount).subscribe(
-      data => this.handleUpdate(true),
-      error => console.log('fail')
+      data => this.handleSuccess('Account geüpdatet.'),
+      error => this.handleFail('Kon account niet updaten.')
     );
   }
 
   deleteAccount() {
+    this.sendingRequest = true;
+    this.deleting = true;
     this.accountService.deleteAccount(this.shownAccount.accountId).subscribe(
-      data => this.handleUpdate(true),
-      error => console.log('fail')
+      data => this.handleSuccess('Account verwijderd.'),
+      error => this.handleFail('Kon account niet verwijderen.')
     );
   }
 
-  handleUpdate(removeShown: boolean) {
-    if (removeShown === true) {
-      this.shownAccount = null;
-    }
+  handleSuccess(toastText: string) {
+    this.toastService.showSuccessToast(toastText);
+    this.shownAccount = null;
     this.getAccounts();
+    this.resetLoaders();
+  }
+
+  handleFail(toastText: string) {
+    this.toastService.showErrorToast(toastText);
+    this.resetLoaders();
+  }
+
+  resetLoaders() {
+    this.updating = false;
+    this.deleting = false;
+    this.sendingRequest = false;
   }
 }

@@ -79,11 +79,21 @@
           <label for="houseNumber">Huisnummer:</label>
           <input id="houseNumber" formControlName="houseNumber" class="form-control">
         </div>
-        <button type="submit" [disabled]="!this.accountForm.valid" class="confirm btn btn-success">Update account</button>
+        <button type="submit" [disabled]="!this.accountForm.valid || sendingRequest" class="confirm btn btn-success">
+          <div *ngIf="!updating">Update account</div>
+          <div class="spinner-border" role="status" *ngIf="updating">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
         <hr>
-        <button class="delete btn btn-danger" (click)="deleteAccount()" type="button">Verwijder account</button>
+        <button class="delete btn btn-danger" (click)="deleteAccount()" type="button" [disabled]="sendingRequest">
+          <div *ngIf="!deleting">Verwijder account</div>
+          <div class="spinner-border" role="status" *ngIf="deleting">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
       </form>
     </div>
   </div>
-
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

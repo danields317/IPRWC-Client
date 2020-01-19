@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
+import {ToastService} from '../../toastService/toast-service';
 
 @Component({
   selector: 'app-product-upload',
@@ -9,8 +10,9 @@ import {ProductService} from '../../services/product.service';
 })
 export class ProductUploadComponent implements OnInit {
   private productForm: FormGroup;
+  creatingProduct = false;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private toastService: ToastService) {
     this.createForm();
   }
 
@@ -30,6 +32,7 @@ export class ProductUploadComponent implements OnInit {
   }
 
   uploadProduct() {
+    this.creatingProduct = true;
     this.productService.uploadProject(this.productFormToFormData()).subscribe(
       data => this.handleSuccess(),
       error => this.handleFail()
@@ -38,10 +41,13 @@ export class ProductUploadComponent implements OnInit {
 
   handleSuccess() {
     this.productForm.reset();
+    this.toastService.showSuccessToast('Product gecreëerd');
+    this.creatingProduct = false;
   }
 
   handleFail() {
-    console.log('fail');
+    this.toastService.showErrorToast('Kon product niet creëren');
+    this.creatingProduct = false;
   }
 
   productFormToFormData() {

@@ -35,6 +35,12 @@
         <option [ngValue]="'Admin'">Administrator</option>
       </select>
     </div>
-    <button type="submit" class="confirm btn btn-success" [disabled]="!this.accountForm.valid || !this.accountForm.touched">Creëer account</button>
+    <button type="submit" class="confirm btn btn-success" [disabled]="!this.accountForm.valid || !this.accountForm.touched || creatingAccount">
+      <div *ngIf="!creatingAccount">Creëer account</div>
+      <div class="spinner-border" role="status" *ngIf="creatingAccount">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
   </form>
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

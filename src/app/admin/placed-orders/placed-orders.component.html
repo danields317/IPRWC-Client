@@ -73,7 +73,12 @@
         <label for="date">Bezorg datum:</label>
         <div id="date" class="form-control">{{shownOrder.deliveryDate | date}}</div>
       </div>
-      <button class="btn btn-danger deleteBtn" (click)="removeOrder(shownOrder.id)">Verwijder bestelling</button>
+      <button class="btn btn-danger deleteBtn" (click)="removeOrder(shownOrder.id)" [disabled]="deleting">
+        <div *ngIf="!deleting">Verwijder bestelling</div>
+        <div class="spinner-border" role="status" *ngIf="deleting">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
     </div>
     <div class="col-lg-6">
       <h2>Producten</h2>
@@ -95,5 +100,5 @@
       </table>
     </div>
   </div>
-
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

@@ -1,0 +1,92 @@
+.product:hover {
+  background-color: #EAEAEA;
+  cursor: pointer;
+}
+
+.container {
+  padding: 2em 0;
+  min-height: 80vh;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 0.2em 0.4em;
+  border-bottom: 1px solid #231F20;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageControl label {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.pageControl button {
+  background-color: #AD974F;
+  border-radius: 20px;
+  width: 100%;
+  text-align: center;
+  border-color: #8E793E;
+}
+
+.pageControl button:disabled {
+  background-color: #AD974F;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.pageControl button:hover {
+  background-color: #8E793E;
+}
+
+.mobilePage {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  .nav-item{
+    width: 100%;
+    text-align: center;
+  }
+
+  .deleteBtn {
+    width: 100%;
+  }
+
+  .orderDetails {
+    padding-bottom: 2em;
+  }
+
+  .container {
+    padding: 0 1em;
+  }
+
+  .info {
+    width: 100%;
+  }
+
+  .pageControl button {
+    text-align: center;
+  }
+
+  .pcOnly {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .mobileOnly {
+    display: none !important;
+  }
+}
+

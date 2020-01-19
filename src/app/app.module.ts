@@ -29,6 +29,12 @@ import { PlacedOrdersComponent } from './admin/placed-orders/placed-orders.compo
 import { AccountEditComponent } from './admin/account-edit/account-edit.component';
 import { AccountAddComponent } from './admin/account-add/account-add.component';
 import {GuardService} from './guard-service';
+import { ProfileComponent } from './profile/profile.component';
+import { EditComponent } from './profile/edit/edit.component';
+import {ToastComponent} from './toastService/toasts-container';
+import { OrdersComponent } from './profile/orders/orders.component';
+import { ShownOrderComponent } from './profile/orders/shown-order/shown-order.component';
+import { OrderItemComponent } from './profile/orders/shown-order/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,13 @@ import {GuardService} from './guard-service';
     ProductUploadComponent,
     PlacedOrdersComponent,
     AccountEditComponent,
-    AccountAddComponent
+    AccountAddComponent,
+    ProfileComponent,
+    EditComponent,
+    ToastComponent,
+    OrdersComponent,
+    ShownOrderComponent,
+    OrderItemComponent
   ],
   imports: [
     BrowserModule,

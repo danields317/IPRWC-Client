@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-11">
+      <table>
+        <thead>
+        <tr>
+          <th>Bestelling ID</th>
+          <th>Stad</th>
+          <th class="pcOnly">Straat</th>
+          <th class="pcOnly">Huisnummer</th>
+          <th>Bezorg datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orderList" class="product" (click)="showOrder(order)">
+          <td>{{order.id}}</td>
+          <td>{{order.deliveryCity}}</td>
+          <td class="pcOnly">{{order.deliveryAddress}}</td>
+          <td class="pcOnly">{{order.deliveryNumber}}</td>
+          <td>{{order.deliveryDate | date}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
+      <button (click)="swapPage(-1)" [disabled]="page === 1">
+        <i class="material-icons">arrow_drop_up</i>
+      </button>
+      <br>
+      <label>{{page}}/{{maxPages}}</label>
+      <br>
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
+        <i class="material-icons">arrow_drop_down</i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row d-flex flex-row justify-content-center mobileOnly">
+  <div class="col-2">
+    <button (click)="swapPage(-1)" [disabled]="page === 1" class="mobilePage">
+      <i class="material-icons">arrow_left</i>
+    </button>
+  </div>
+  <div class="col-2">
+    <label>{{page}}/{{maxPages}}</label>
+  </div>
+  <div class="col-2">
+    <button (click)="swapPage(1)" [disabled]="page >= maxPages" class="mobilePage">
+      <i class="material-icons">arrow_right</i>
+    </button>
+  </div>
+</div>
+<div class="container">
+  <app-shown-order></app-shown-order>
+</div>
+

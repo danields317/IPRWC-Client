@@ -103,6 +103,11 @@ export class AccountService {
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
   }
 
+  updatePersonalAccount(updatedAccount: Account) {
+    return this.httpService.makePutRequest('account', updatedAccount).pipe(
+      catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));
+  }
+
   updateAccount(updatedAccount: Account) {
     return this.httpService.makePutRequest('account/' + updatedAccount.accountId, updatedAccount).pipe(
       catchError((errorResponse: HttpErrorResponse) => this.handleError(errorResponse)));

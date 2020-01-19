@@ -10,6 +10,7 @@ import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {RegisterComponent} from './register/register.component';
 import {AdminComponent} from './admin/admin.component';
 import {GuardService} from './guard-service';
+import {ProfileComponent} from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'confirmation', component: ConfirmationComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'admin', canActivate: [GuardService], component: AdminComponent},
   {path: '**', redirectTo: ''}
 ];

@@ -1,0 +1,30 @@
+<div class="card" *ngIf="shownOrder">
+  <div class="card-body">
+    <div class="col-lg-6 orderDetails">
+      <h2>Order details</h2>
+      <div class="form-group">
+        <label for="id">Order id:</label>
+        <div id="id" class="form-control">{{shownOrder.id}}</div>
+      </div>
+      <div class="form-group">
+        <label for="city">Bezorg stad:</label>
+        <div id="city" class="form-control">{{shownOrder.deliveryCity}}</div>
+      </div>
+      <div class="form-group">
+        <label for="street">Bezorg straat:</label>
+        <div id="street" class="form-control">{{shownOrder.deliveryAddress}}</div>
+      </div>
+      <div class="form-group">
+        <label for="number">Bezorg huisnummer:</label>
+        <div id="number" class="form-control">{{shownOrder.deliveryNumber}}</div>
+      </div>
+      <div class="form-group">
+        <label for="date">Bezorg datum:</label>
+        <div id="date" class="form-control">{{shownOrder.deliveryDate | date}}</div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <app-order-item *ngFor="let orderItem of shownOrder.items" [orderItem]="orderItem"></app-order-item>
+    </div>
+  </div>
+</div>

@@ -1,100 +1,111 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-11">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product naam</th>
+          <th class="pcOnly">Merk</th>
+          <th class="pcOnly">Categorie</th>
+          <th class="pcOnly">Voorraad</th>
+          <th>Prijs</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
+          <td>{{product.id}}</td>
+          <td>{{product.productName}}</td>
+          <td class="pcOnly">{{product.brand}}</td>
+          <td class="pcOnly">{{product.category}}</td>
+          <td class="pcOnly">{{product.stock}}</td>
+          <td>{{product.price | currency: 'EUR'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="container">
-        <div class="row">
-        <div class="col-12 col-lg-11">
-          <table>
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Product naam</th>
-              <th class="pcOnly">Merk</th>
-              <th class="pcOnly">Categorie</th>
-              <th class="pcOnly">Voorraad</th>
-              <th>Prijs</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let product of productList" class="product" (click)="showProduct(product)">
-              <td>{{product.id}}</td>
-              <td>{{product.productName}}</td>
-              <td class="pcOnly">{{product.brand}}</td>
-              <td class="pcOnly">{{product.category}}</td>
-              <td class="pcOnly">{{product.stock}}</td>
-              <td>{{product.price | currency: 'EUR'}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
+      <button (click)="swapPage(-1)" [disabled]="page === 1">
+        <i class="material-icons">arrow_drop_up</i>
+      </button>
+      <br>
+      <label>{{page}}/{{maxPages}}</label>
+      <br>
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages">
+        <i class="material-icons">arrow_drop_down</i>
+      </button>
+    </div>
+  </div>
 
-        <div class="col-lg-1 pageControl d-flex flex-column justify-content-center pcOnly">
-          <button (click)="swapPage(-1)" [disabled]="page === 1">
-            <i class="material-icons">arrow_drop_up</i>
-          </button>
+  <div class="row d-flex flex-row justify-content-center mobileOnly">
+    <div class="col-2">
+      <button (click)="swapPage(-1)" [disabled]="page === 1" class="mobilePage">
+        <i class="material-icons">arrow_left</i>
+      </button>
+    </div>
+    <div class="col-2 d-flex flex-row justify-content-center">
+      <label>{{page}}/{{maxPages}}</label>
+    </div>
+    <div class="col-2">
+      <button (click)="swapPage(1)" [disabled]="page >= maxPages" class="mobilePage">
+        <i class="material-icons">arrow_right</i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="shownProduct" style="padding-top: 2em">
+    <div class="col-lg-6 image d-flex align-items-center justify-content-center">
+      <img [src]="this.shownProductImg" class="img-fluid" *ngIf="this.shownProductImg">
+    </div>
+    <div class="col-lg-6 info">
+      <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+        <div class="form-group">
+          <label for="thumbnail">Kies nieuwe product foto:</label>
           <br>
-          <label>{{page}}/{{maxPages}}</label>
-          <br>
-          <button (click)="swapPage(1)" [disabled]="page >= maxPages">
-            <i class="material-icons">arrow_drop_down</i>
-          </button>
+          <input type="file" id="thumbnail" accept="image/*" (change)="onFileSelect($event)">
         </div>
-      </div>
-
-        <div class="row d-flex flex-row justify-content-center mobileOnly">
-          <div class="col-2">
-            <button (click)="swapPage(-1)" [disabled]="page === 1" class="mobilePage">
-              <i class="material-icons">arrow_left</i>
-            </button>
-          </div>
-          <div class="col-2 d-flex flex-row justify-content-center">
-            <label>{{page}}/{{maxPages}}</label>
-          </div>
-          <div class="col-2">
-            <button (click)="swapPage(1)" [disabled]="page >= maxPages" class="mobilePage">
-              <i class="material-icons">arrow_right</i>
-            </button>
-          </div>
+        <div class="form-group">
+          <label for="productName">Product naam:</label>
+          <input id="productName" formControlName="productName" class="form-control">
         </div>
-
-        <div class="row" *ngIf="shownProduct" style="padding-top: 2em">
-            <div class="col-lg-6 image d-flex align-items-center justify-content-center">
-              <img [src]="this.shownProductImg" class="img-fluid" *ngIf="this.shownProductImg">
-            </div>
-            <div class="col-lg-6 info">
-              <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
-                <div class="form-group">
-                  <label for="thumbnail">Kies nieuwe product foto:</label>
-                  <br>
-                  <input type="file" id="thumbnail" accept="image/*" (change)="onFileSelect($event)">
-                </div>
-                <div class="form-group">
-                  <label for="productName">Product naam:</label>
-                  <input id="productName" formControlName="productName" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="productName">Beschrijving:</label>
-                  <textarea id="description" formControlName="description" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="productName">Merk:</label>
-                  <input id="brand" formControlName="brand" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="productName">Prijs:</label>
-                  <input id="price" formControlName="price" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="productName">Voorraad:</label>
-                  <input id="stock" formControlName="stock" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="productName">Categorie:</label>
-                  <input id="category" formControlName="category" class="form-control">
-                </div>
-                <button type="submit" [disabled]="!this.productForm.valid" class="confirm btn btn-success">Update product</button>
-                <hr>
-                <button class="delete btn btn-danger" (click)="deleteProduct()" type="button">Verwijder product</button>
-              </form>
-            </div>
+        <div class="form-group">
+          <label for="productName">Beschrijving:</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
         </div>
+        <div class="form-group">
+          <label for="productName">Merk:</label>
+          <input id="brand" formControlName="brand" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="productName">Prijs:</label>
+          <input id="price" formControlName="price" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="productName">Voorraad:</label>
+          <input id="stock" formControlName="stock" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="productName">Categorie:</label>
+          <input id="category" formControlName="category" class="form-control">
+        </div>
+        <button type="submit" [disabled]="!this.productForm.valid || sendingRequest" class="confirm btn btn-success">
+          <div *ngIf="!updating">Update product</div>
+          <div class="spinner-border" role="status" *ngIf="updating">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
+        <hr>
+        <button class="delete btn btn-danger" (click)="deleteProduct()" type="button" [disabled]="sendingRequest">
+          <div *ngIf="!deleting">Verwijder product</div>
+          <div class="spinner-border" role="status" *ngIf="deleting">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
 
-      </div>
+</div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+

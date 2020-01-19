@@ -1,0 +1,26 @@
+.container {
+  padding: 2em 0;
+  min-height: 80vh;
+}
+
+.confirm, .delete {
+  width: 100%;
+}
+
+.confirm:disabled {
+  cursor: default;
+}
+
+.edit {
+  padding-top: 2em;
+}
+
+.info {
+  width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  .info {
+    width: 100%;
+  }
+}

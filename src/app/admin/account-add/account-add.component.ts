@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../services/account.service';
 import {Account} from '../../models/account';
+import {ToastService} from '../../toastService/toast-service';
 
 @Component({
   selector: 'app-account-add',
@@ -10,8 +11,9 @@ import {Account} from '../../models/account';
 })
 export class AccountAddComponent implements OnInit {
   accountForm: FormGroup;
+  creatingAccount = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private toastService: ToastService) {
     this.createForm();
   }
 
@@ -32,6 +34,7 @@ export class AccountAddComponent implements OnInit {
   }
 
   uploadAccount() {
+    this.creatingAccount = true;
     const account: Account = {accountId: 0,
       hash: this.accountForm.get('password').value ,
       accountRole: this.accountForm.get('accountRole').value,
@@ -50,9 +53,12 @@ export class AccountAddComponent implements OnInit {
 
   handleSuccess() {
     this.accountForm.reset();
+    this.toastService.showSuccessToast('Account gecreëerd.');
+    this.creatingAccount = false;
   }
 
   handleError() {
-    console.log('fail');
+    this.toastService.showErrorToast('Kon account niet creëren');
+    this.creatingAccount = false;
   }
 }
