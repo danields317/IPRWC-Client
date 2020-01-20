@@ -23,6 +23,4 @@ export class GuardService implements CanActivate {
   navigateToHome() {
     this.router.navigate(['']);
   }
-
-
 }

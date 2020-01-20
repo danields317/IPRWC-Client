@@ -35,6 +35,7 @@ import {ToastComponent} from './toastService/toasts-container';
 import { OrdersComponent } from './profile/orders/orders.component';
 import { ShownOrderComponent } from './profile/orders/shown-order/shown-order.component';
 import { OrderItemComponent } from './profile/orders/shown-order/order-item/order-item.component';
+import {LoggedInGuard} from './logged-in-guard';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { OrderItemComponent } from './profile/orders/shown-order/order-item/orde
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [GuardService],
+  providers: [GuardService, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

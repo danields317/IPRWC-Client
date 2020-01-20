@@ -8,7 +8,7 @@
       <li class="nav-item" (click)="toProducts()">
         <a class="nav-link">Alle horloges</a>
       </li>
-      <li class="nav-item" (click)="toProfile()">
+      <li class="nav-item" (click)="toProfile()" *ngIf="loggedIn">
         <a class="nav-link">Mijn profiel</a>
       </li>
       <li class="nav-item" *ngIf="admin">
