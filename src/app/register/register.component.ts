@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {buffer} from 'rxjs/operators';
-import validate = WebAssembly.validate;
 import {AccountService} from '../services/account.service';
 import {Account} from '../models/account';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +13,10 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   registering = false;
+  error = false;
+  differentPasswords = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
     this.createForm();
   }
 
@@ -44,8 +45,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = false;
     this.registering = true;
+    this.differentPasswords = false;
     if (!this.checkSamePassword()) {
+      this.differentPasswords = true;
+      this.registering = false;
       return;
     }
     const account: Account = {accountId: 0, hash: this.registerForm.get('password').value , accountRole: 'Customer',
@@ -60,10 +65,11 @@ export class RegisterComponent implements OnInit {
 
   private accountCreated() {
     this.registering = false;
+    this.router.navigate(['/login']);
   }
 
   private accountFailed() {
-    console.log('failed');
     this.registering = false;
+    this.error = true;
   }
 }

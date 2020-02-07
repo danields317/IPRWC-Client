@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../services/account.service';
 import {Router} from '@angular/router';
 import {Account} from '../models/account';
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loginSub: Subscription;
   accountSub: Subscription;
 
-  constructor(private accountService: AccountService, private router: Router) {
+  constructor(private accountService: AccountService, public router: Router) {
     this.companyName = environment.appName;
   }
 

@@ -50,6 +50,8 @@
           <span class="sr-only">Loading...</span>
         </div>
       </button>
+      <small *ngIf="error">Kon account niet aanmaken.</small>
+      <small *ngIf="differentPasswords">Wachtwoorden komen niet overeen.</small>
     </form>
   </main>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="line">Winkelwagen</h1>
+  <h1 class="line">Winkelwagen</h1>
   <p *ngIf="orderItems.length === 0">Uw winkelwagen is leeg.</p>
   <app-cart-item *ngFor="let item of orderItems" [orderItem]="item" (emitPrice)="countTotalPrice($event)"></app-cart-item>
   <div class="card order-cont" *ngIf="orderItems.length != 0">

@@ -9,7 +9,7 @@ import {ToastService} from '../../toastService/toast-service';
   styleUrls: ['./product-upload.component.css']
 })
 export class ProductUploadComponent implements OnInit {
-  private productForm: FormGroup;
+  public productForm: FormGroup;
   creatingProduct = false;
 
   constructor(private productService: ProductService, private toastService: ToastService) {

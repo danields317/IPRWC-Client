@@ -12,11 +12,11 @@ import {CartService} from '../../services/cart.service';
 export class CartItemComponent implements OnInit {
 
   @Input() orderItem: OrderItem;
-  private product: Product;
-  private productImage;
-  private isLoading = true;
-  private isLoadingImg = true;
-  private totalPrice: number;
+  public product: Product;
+  public productImage;
+  public isLoading = true;
+  public isLoadingImg = true;
+  public totalPrice: number;
   @Output() emitPrice: EventEmitter<number> = new EventEmitter();
 
   constructor(private productService: ProductService, private cartService: CartService) { }

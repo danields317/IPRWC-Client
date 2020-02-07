@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/',
+  // apiUrl: 'http://localhost:8080/api/',
+  apiUrl: 'http://192.168.2.84:8080/api/',
   appName: 'The Time Factory'
 };
 

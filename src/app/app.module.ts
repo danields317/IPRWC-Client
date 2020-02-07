@@ -37,6 +37,10 @@ import { ShownOrderComponent } from './profile/orders/shown-order/shown-order.co
 import { OrderItemComponent } from './profile/orders/shown-order/order-item/order-item.component';
 import {LoggedInGuard} from './logged-in-guard';
 
+export function jwtTokenGetter() {
+  return localStorage.getItem('id_token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,11 +78,9 @@ import {LoggedInGuard} from './logged-in-guard';
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({config: {
-        tokenGetter: () => {
-          return localStorage.getItem('id_token');
-        },
-        whitelistedDomains: ['localhost:8080'],
-        throwNoTokenError: false
+        whitelistedDomains: ['localhost:8080', '192.168.2.84:8080'],
+        throwNoTokenError: false,
+        tokenGetter: jwtTokenGetter
     }
     }),
     FormsModule,
