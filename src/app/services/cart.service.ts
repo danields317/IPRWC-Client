@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs';
 export class CartService {
 
   private cartItemsList: OrderItem[] = [];
-  public cartItems = new BehaviorSubject(null);
+  public cartItems = new BehaviorSubject(this.cartItemsList);
 
     constructor() {
     }

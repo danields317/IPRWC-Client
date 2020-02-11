@@ -46,7 +46,7 @@ export class OrderComponent implements OnInit {
   getMinimumDeliveryDate() {
     const date = new Date();
     date.setDate(date.getDate() + 1);
-    return  {year: date.getFullYear(), month: date.getMonth() + 2, day: date.getDate()};
+    return  {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
   }
 
   onSubmit() {

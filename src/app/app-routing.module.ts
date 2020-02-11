@@ -20,10 +20,10 @@ const routes: Routes = [
   {path: 'product/:id', component: ProductComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'order', component: OrderComponent},
-  {path: 'confirmation', component: ConfirmationComponent},
-  {path: 'profile', canActivate: [LoggedInGuard] , component: ProfileComponent},
+  {path: 'cart', canActivate: [LoggedInGuard], component: CartComponent},
+  {path: 'order', canActivate: [LoggedInGuard], component: OrderComponent},
+  {path: 'confirmation', canActivate: [LoggedInGuard], component: ConfirmationComponent},
+  {path: 'profile', canActivate: [LoggedInGuard], component: ProfileComponent},
   {path: 'admin', canActivate: [GuardService], component: AdminComponent},
   {path: '**', redirectTo: ''}
 ];
