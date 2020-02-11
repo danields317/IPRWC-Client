@@ -61,11 +61,13 @@ export class PlacedOrdersComponent implements OnInit {
   manageDelete() {
     this.toastService.showSuccessToast('Bestelling verwijderd.');
     this.shownOrder = null;
+    this.deleting = false;
     this.getOrders();
   }
 
   handleFail() {
     this.toastService.showErrorToast('Kon bestelling niet verwijderen.');
+    this.deleting = false;
   }
 
 }

@@ -78,7 +78,7 @@ export function jwtTokenGetter() {
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({config: {
-        whitelistedDomains: ['localhost:8080', '192.168.2.84:8080'],
+        whitelistedDomains: ['localhost:8080', '136.144.228.191:8080'],
         throwNoTokenError: false,
         tokenGetter: jwtTokenGetter
     }
